@@ -287,11 +287,8 @@ switch_provider() {
   show_current
   echo ""
 
-  # Reload shell configuration
-  echo "Reloading shell configuration..."
-  source "$ZSHENV_ENV" 2>/dev/null || true
   echo ""
-  echo "Done! Restart Claude Code to apply changes."
+  echo "Done! Run 'reload' or 'source ~/.zshrc' to apply changes."
 }
 
 # Show help
