@@ -69,6 +69,113 @@ list_providers() {
   fi
 }
 
+# Validate providers.json configuration
+validate_config() {
+  local errors=0
+  local warnings=0
+
+  echo "Validating configuration..."
+  echo ""
+
+  # Check if providers.json is valid JSON
+  if ! jq empty "$PROVIDERS_FILE" 2>/dev/null; then
+    echo "ERROR: providers.json is not valid JSON"
+    return 1
+  fi
+
+  # Check if settings.json is valid JSON
+  if ! jq empty "$SETTINGS_FILE" 2>/dev/null; then
+    echo "ERROR: settings.json is not valid JSON"
+    return 1
+  fi
+
+  # Check each provider
+  local providers
+  providers=$(jq -r 'keys[]' "$PROVIDERS_FILE")
+
+  for provider in $providers; do
+    echo "Checking provider: $provider"
+
+    # Check required fields
+    local base_url auth_token_var model
+    base_url=$(jq -r ".[\"$provider\"].ANTHROPIC_BASE_URL // empty" "$PROVIDERS_FILE")
+    auth_token_var=$(jq -r ".[\"$provider\"].ANTHROPIC_AUTH_TOKEN_VAR // empty" "$PROVIDERS_FILE")
+    model=$(jq -r ".[\"$provider\"].ANTHROPIC_MODEL // empty" "$PROVIDERS_FILE")
+
+    if [[ -z "$base_url" ]]; then
+      echo "  ERROR: ANTHROPIC_BASE_URL is missing"
+      ((errors++))
+    fi
+
+    if [[ -z "$auth_token_var" ]]; then
+      echo "  ERROR: ANTHROPIC_AUTH_TOKEN_VAR is missing"
+      ((errors++))
+    else
+      # Check if environment variable exists
+      if [[ -z "${!auth_token_var:-}" ]]; then
+        echo "  WARNING: Environment variable \${$auth_token_var} is not set"
+        ((warnings++))
+      else
+        echo "  OK: \${$auth_token_var} is set"
+      fi
+    fi
+
+    if [[ -z "$model" ]]; then
+      echo "  WARNING: ANTHROPIC_MODEL is not set"
+      ((warnings++))
+    fi
+
+    # Check model variants
+    local haiku sonnet opus
+    haiku=$(jq -r ".[\"$provider\"].ANTHROPIC_DEFAULT_HAIKU_MODEL // empty" "$PROVIDERS_FILE")
+    sonnet=$(jq -r ".[\"$provider\"].ANTHROPIC_DEFAULT_SONNET_MODEL // empty" "$PROVIDERS_FILE")
+    opus=$(jq -r ".[\"$provider\"].ANTHROPIC_DEFAULT_OPUS_MODEL // empty" "$PROVIDERS_FILE")
+
+    [[ -z "$haiku" ]] && echo "  WARNING: ANTHROPIC_DEFAULT_HAIKU_MODEL is not set" && ((warnings++))
+    [[ -z "$sonnet" ]] && echo "  WARNING: ANTHROPIC_DEFAULT_SONNET_MODEL is not set" && ((warnings++))
+    [[ -z "$opus" ]] && echo "  WARNING: ANTHROPIC_DEFAULT_OPUS_MODEL is not set" && ((warnings++))
+
+    echo ""
+  done
+
+  # Check .zshenv.env
+  echo "Checking .zshenv.env..."
+  if [[ -f "$ZSHENV_ENV" ]]; then
+    if grep -q "^export ANTHROPIC_AUTH_TOKEN=" "$ZSHENV_ENV"; then
+      local token_var
+      token_var=$(grep "^export ANTHROPIC_AUTH_TOKEN=" "$ZSHENV_ENV" | cut -d'=' -f2- | tr -d '"' | sed 's/\${//;s/}//')
+      if [[ -n "${!token_var:-}" ]]; then
+        echo "  OK: ANTHROPIC_AUTH_TOKEN -> \${$token_var}"
+      else
+        echo "  WARNING: \${$token_var} is not set"
+        ((warnings++))
+      fi
+    else
+      echo "  WARNING: ANTHROPIC_AUTH_TOKEN is not configured"
+      ((warnings++))
+    fi
+  else
+    echo "  ERROR: .zshenv.env not found"
+    ((errors++))
+  fi
+
+  echo ""
+  echo "=== Validation Summary ==="
+  echo "Errors: $errors"
+  echo "Warnings: $warnings"
+
+  if [[ $errors -gt 0 ]]; then
+    echo "Status: FAILED"
+    return 1
+  elif [[ $warnings -gt 0 ]]; then
+    echo "Status: PASSED with warnings"
+    return 0
+  else
+    echo "Status: OK"
+    return 0
+  fi
+}
+
 # Show current provider
 show_current() {
   local base_url auth_token_var model
@@ -199,14 +306,16 @@ Options:
   -l, --list      List available providers
   -s, --status    Show current provider status
   -v, --version   Show version
+  --validate      Validate configuration
 
 Providers:
 $(jq -r 'to_entries[] | "  \(.key)\t\(.value.name)"' "$PROVIDERS_FILE" 2>/dev/null || echo "  (none)")
 
 Examples:
-  cc-switch glm      Switch to GLM provider
-  cc-switch mimo     Switch to MiMo provider
-  cc-switch -s       Show current configuration
+  cc-switch glm         Switch to GLM provider
+  cc-switch mimo        Switch to MiMo provider
+  cc-switch -s          Show current configuration
+  cc-switch --validate  Validate all configurations
 
 Configuration:
   Providers file: $PROVIDERS_FILE
@@ -239,6 +348,9 @@ main() {
       ;;
     -v|--version)
       echo "cc-switch v${VERSION}"
+      ;;
+    --validate)
+      validate_config
       ;;
     -*)
       echo "Error: Unknown option '$1'" >&2
