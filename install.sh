@@ -53,15 +53,18 @@ else
   fi
 fi
 
-# 检查 .zshrc 是否已有 alias
+# 检查 .zshrc 是否已有 cc-switch
 if ! grep -q "cc-switch" ~/.zshrc; then
-  echo "添加 alias 到 ~/.zshrc..."
+  echo "添加 cc-switch 函数到 ~/.zshrc..."
   cat >> ~/.zshrc << 'EOF'
 
 # Claude Code 供应商切换
-alias cc-switch='~/.local/bin/cc-switch'
-alias cc-mimo='~/.local/bin/cc-switch mimo'
-alias cc-glm='~/.local/bin/cc-switch glm'
+cc-switch() {
+  ~/.local/bin/cc-switch "$@"
+  local ret=$?
+  [[ $ret -eq 0 && $# -gt 0 && "$1" != -* ]] && source ~/.zshenv && source ~/.zprofile && source ~/.zshrc
+  return $ret
+}
 EOF
 fi
 

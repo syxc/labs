@@ -33,12 +33,18 @@ cp providers.json ~/.claude/
 安装后在 `~/.zshrc` 中添加：
 
 ```bash
-alias cc-switch='~/.local/bin/cc-switch'
-alias cc-mimo='~/.local/bin/cc-switch mimo'
-alias cc-glm='~/.local/bin/cc-switch glm'
+# Claude Code 供应商切换
+cc-switch() {
+  ~/.local/bin/cc-switch "$@"
+  local ret=$?
+  [[ $ret -eq 0 && $# -gt 0 && "$1" != -* ]] && source ~/.zshenv && source ~/.zprofile && source ~/.zshrc
+  return $ret
+}
 ```
 
 执行 `source ~/.zshrc` 生效。
+
+> 使用 shell 函数而非 alias，是为了在切换后自动 reload 环境变量，使其立即在当前 shell 生效。
 
 ## 配置
 
@@ -53,13 +59,28 @@ export ZAI_API_KEY="your-glm-key"
 
 ```bash
 cc-switch            # 查看可用供应商
-cc-switch mimo       # 切换到 MiMo
-cc-switch glm        # 切换到 GLM
-cc-switch -s         # 查看当前配置
-cc-switch --validate # 校验配置
+cc-switch mimo       # 切换到 MiMo（自动 reload）
+cc-switch glm        # 切换到 GLM（自动 reload）
+cc-switch -s         # 查看当前配置（不 reload）
+cc-switch --validate # 校验配置（不 reload）
 ```
 
-切换后重启 Claude Code 生效。
+切换后环境变量自动生效，无需手动 reload。重启 Claude Code 即可使用新供应商。
+
+## 切换流程
+
+```
+cc-switch glm
+  → 更新 .zshenv.env 中的 ANTHROPIC_AUTH_TOKEN
+  → 更新 settings.json 中的 BASE_URL、MODEL 等
+  → 自动 source ~/.zshenv && ~/.zprofile && ~/.zshrc
+  → 环境变量即时生效
+```
+
+**安全保障：**
+- 切换失败不会 reload
+- 只读操作（`-s`、`--validate`）不会 reload
+- 配置备份轮转，损坏可回退
 
 ## 添加新供应商
 
