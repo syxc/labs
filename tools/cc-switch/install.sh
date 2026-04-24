@@ -59,6 +59,7 @@ if ! grep -q "cc-switch" ~/.zshrc; then
   cat >> ~/.zshrc << 'EOF'
 
 # Claude Code 供应商切换
+unalias cc-switch 2>/dev/null
 cc-switch() {
   ~/.local/bin/cc-switch "$@"
   local ret=$?
