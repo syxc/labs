@@ -180,6 +180,18 @@ cc-switch --status
 cc-switch --help
 ```
 
+### 验证配置
+
+```bash
+cc-switch --validate
+```
+
+校验内容：
+- providers.json / settings.json 格式
+- 必填字段是否完整
+- 环境变量是否已设置
+- .zshenv.env 配置是否正确
+
 ## 添加新供应商
 
 ### 1. 获取 API 信息
