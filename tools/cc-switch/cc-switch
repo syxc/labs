@@ -288,7 +288,7 @@ switch_provider() {
   echo ""
 
   echo ""
-  echo "Done! Run 'reload' or 'source ~/.zshrc' to apply changes."
+  echo "Done!"
 }
 
 # Show help
