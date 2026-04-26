@@ -6,7 +6,7 @@
 
 | 工具 | 说明 |
 |------|------|
-| [cc-switch](tools/cc-switch/) | Claude Code 多供应商切换工具 |
+| [cc-switch](tools/cc-switch/) | Claude Code 多供应商切换工具（MiMo / GLM / DeepSeek） |
 
 ## 平台支持
 

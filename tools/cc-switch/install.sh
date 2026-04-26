@@ -39,6 +39,9 @@ export TP_MIMO_API_KEY="your-mimo-key-here"
 # GLM
 export ZAI_API_KEY="your-glm-key-here"
 
+# DeepSeek
+export CC_DEEPSEEK_API_KEY="your-deepseek-key-here"
+
 # Claude Code - 由 cc-switch 管理
 export ANTHROPIC_AUTH_TOKEN="${TP_MIMO_API_KEY}"
 EOF
@@ -79,6 +82,7 @@ echo "3. 使用 cc-switch 查看可用供应商"
 echo ""
 echo "使用方法："
 echo "  cc-switch        # 列出供应商"
-echo "  cc-switch glm    # 切换到 GLM"
-echo "  cc-switch mimo   # 切换到 MiMo"
-echo "  cc-switch -s     # 查看当前配置"
+echo "  cc-switch glm       # 切换到 GLM"
+echo "  cc-switch mimo      # 切换到 MiMo"
+echo "  cc-switch deepseek  # 切换到 DeepSeek"
+echo "  cc-switch -s        # 查看当前配置"

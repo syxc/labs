@@ -1,6 +1,6 @@
 # cc-switch
 
-Claude Code 多供应商切换工具，一键切换 MiMo、GLM 等不同供应商配置。
+Claude Code 多供应商切换工具，一键切换 MiMo、GLM、DeepSeek 等不同供应商配置。
 
 ## 平台支持
 
@@ -54,6 +54,7 @@ cc-switch() {
 ```bash
 export TP_MIMO_API_KEY="your-mimo-key"
 export ZAI_API_KEY="your-glm-key"
+export CC_DEEPSEEK_API_KEY="your-deepseek-key"
 ```
 
 ## 使用
@@ -62,6 +63,7 @@ export ZAI_API_KEY="your-glm-key"
 cc-switch            # 查看可用供应商
 cc-switch mimo       # 切换到 MiMo（自动 reload）
 cc-switch glm        # 切换到 GLM（自动 reload）
+cc-switch deepseek   # 切换到 DeepSeek（自动 reload）
 cc-switch -s         # 查看当前配置（不 reload）
 cc-switch --validate # 校验配置（不 reload）
 ```
@@ -102,7 +104,8 @@ export NEW_PROVIDER_API_KEY="your-key"
     "ANTHROPIC_MODEL": "model-name",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "haiku-model",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "sonnet-model",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "opus-model"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "opus-model",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "subagent-model"
   }
 }
 ```
