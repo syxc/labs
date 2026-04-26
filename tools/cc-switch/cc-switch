@@ -126,14 +126,16 @@ validate_config() {
     fi
 
     # Check model variants
-    local haiku sonnet opus
+    local haiku sonnet opus subagent
     haiku=$(jq -r ".[\"$provider\"].ANTHROPIC_DEFAULT_HAIKU_MODEL // empty" "$PROVIDERS_FILE")
     sonnet=$(jq -r ".[\"$provider\"].ANTHROPIC_DEFAULT_SONNET_MODEL // empty" "$PROVIDERS_FILE")
     opus=$(jq -r ".[\"$provider\"].ANTHROPIC_DEFAULT_OPUS_MODEL // empty" "$PROVIDERS_FILE")
+    subagent=$(jq -r ".[\"$provider\"].CLAUDE_CODE_SUBAGENT_MODEL // empty" "$PROVIDERS_FILE")
 
     [[ -z "$haiku" ]] && echo "  WARNING: ANTHROPIC_DEFAULT_HAIKU_MODEL is not set" && ((warnings++))
     [[ -z "$sonnet" ]] && echo "  WARNING: ANTHROPIC_DEFAULT_SONNET_MODEL is not set" && ((warnings++))
     [[ -z "$opus" ]] && echo "  WARNING: ANTHROPIC_DEFAULT_OPUS_MODEL is not set" && ((warnings++))
+    [[ -z "$subagent" ]] && echo "  WARNING: CLAUDE_CODE_SUBAGENT_MODEL is not set" && ((warnings++))
 
     echo ""
   done
@@ -225,13 +227,14 @@ switch_provider() {
   config=$(jq ".[\"$provider\"]" "$PROVIDERS_FILE")
 
   # Extract values
-  local base_url auth_token_var model haiku sonnet opus
+  local base_url auth_token_var model haiku sonnet opus subagent_model
   base_url=$(echo "$config" | jq -r '.ANTHROPIC_BASE_URL // empty')
   auth_token_var=$(echo "$config" | jq -r '.ANTHROPIC_AUTH_TOKEN_VAR // empty')
   model=$(echo "$config" | jq -r '.ANTHROPIC_MODEL // empty')
   haiku=$(echo "$config" | jq -r '.ANTHROPIC_DEFAULT_HAIKU_MODEL // empty')
   sonnet=$(echo "$config" | jq -r '.ANTHROPIC_DEFAULT_SONNET_MODEL // empty')
   opus=$(echo "$config" | jq -r '.ANTHROPIC_DEFAULT_OPUS_MODEL // empty')
+  subagent_model=$(echo "$config" | jq -r '.CLAUDE_CODE_SUBAGENT_MODEL // empty')
 
   # Validate required fields
   if [[ -z "$base_url" ]]; then
@@ -269,12 +272,14 @@ switch_provider() {
     --arg haiku "$haiku" \
     --arg sonnet "$sonnet" \
     --arg opus "$opus" \
+    --arg subagent_model "$subagent_model" \
     '
     .env.ANTHROPIC_BASE_URL = $base_url |
     .env.ANTHROPIC_MODEL = $model |
     .env.ANTHROPIC_DEFAULT_HAIKU_MODEL = $haiku |
     .env.ANTHROPIC_DEFAULT_SONNET_MODEL = $sonnet |
     .env.ANTHROPIC_DEFAULT_OPUS_MODEL = $opus |
+    .env.CLAUDE_CODE_SUBAGENT_MODEL = $subagent_model |
     del(.env.ANTHROPIC_AUTH_TOKEN)
     ' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp"
 
