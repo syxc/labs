@@ -7,8 +7,4 @@
 | 工具 | 说明 |
 |------|------|
 | [cc-switch](tools/cc-switch/) | Claude Code 多供应商切换工具（MiMo / GLM / DeepSeek） |
-
-## 平台支持
-
-- macOS（已验证）
-- Linux（未测试）
+| [autoresearch](tools/autoresearch/) | Claude Code 自主实验循环 — 迭代优化任何可度量目标 |
