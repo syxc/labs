@@ -7,7 +7,7 @@ description: "Structured code review prompt. Use when the user wants to review c
 
 ## Source Prompt
 
-Original prompt by nian1:
+Original prompt from [emdash.sh](https://emdash.sh):
 
 > Review all changes in this worktree. Focus on correctness, regressions, edge cases, and missing tests. List concrete issues first, then note residual risks.
 
