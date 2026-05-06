@@ -20,6 +20,10 @@ AI Builders 早报生成工具的配置备份。
 | `FOLLOW_BUILDERS_REPO` | `$HOME/ai/niuma/follow-builders` | follow-builders 仓库本地路径 |
 | `FOLLOW_BUILDERS_HOME` | `$HOME/.follow-builders` | 用户配置和缓存目录 |
 
+## 致谢
+
+Prompt 模板（`prompts/digest-morning-briefing.md`）基于 [kevinma2010 的 gist](https://gist.github.com/kevinma2010/d234e6239f54b7d1b1052dd04c3596b1) 改编。
+
 ## 依赖
 
 - feed 数据来源: [zarazhangrui/follow-builders](https://github.com/zarazhangrui/follow-builders) 的本地 clone
