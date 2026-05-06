@@ -176,9 +176,16 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 - Keep all technical terms in English (e.g. classifier, sandbox, end-to-end, agent, prompt injection)
 - Keep proper nouns in English (e.g. Anthropic, OpenAI, Claude Code, Vercel)
 - Keep all URLs unchanged
-- **Punctuation: match the language of the surrounding text**
-  - English text uses English punctuation: `"`, `,`, `.`, `:`, `;`, `!`, `?`, `()`
-  - Chinese text uses Chinese punctuation: `""`，`，`，`。`，`：`，`；`，`！`，`？`，`（）`
-  - This applies to all punctuation marks, not just quotation marks
-  - Inline code uses backticks \`code\`
+- **Punctuation: follow the primary language of each sentence, not individual words**
+  - In a Chinese-language document:
+    - Sentence-level punctuation (period, comma, colon, semicolon, question, exclamation) uses Chinese full-width marks: `。` `，` `：` `；` `！` `？`
+    - English technical terms or proper nouns embedded in a Chinese sentence do NOT switch the punctuation to English — the sentence remains Chinese
+  - **Quotation marks, by content type:**
+    - Chinese text quotation: Chinese double quotes `""` and single quotes `''` (full-width)
+    - English phrases or technical terms inline: English double quotes `""` or single quotes `''` (half-width)
+    - Inline code, commands, file paths, identifiers: backticks `` `code` ``
+  - **Parentheses, by content:**
+    - Parenthesizing Chinese text: full-width `（）`, no extra spacing
+    - Parenthesizing English text within Chinese: half-width `()`, separated from Chinese by a leading space, e.g. `请使用 Claude Code (Auto Mode) 进行开发`
+  - **Numbers:** half-width digits (e.g. `2026`, `0.4%`, `83%`), except in quoted Chinese prose
 - Professional conversational tone, no filler, no emoji
