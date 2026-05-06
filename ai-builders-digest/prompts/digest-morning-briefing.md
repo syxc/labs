@@ -176,8 +176,9 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 - Keep all technical terms in English (e.g. classifier, sandbox, end-to-end, agent, prompt injection)
 - Keep proper nouns in English (e.g. Anthropic, OpenAI, Claude Code, Vercel)
 - Keep all URLs unchanged
-- **Quotation marks:**
-  - Use English straight quotes `"` for code, commands, technical terms, and English phrases
-  - Use Chinese curved quotes `""` for general emphasis and regular quotations
+- **Punctuation: match the language of the surrounding text**
+  - English text uses English punctuation: `"`, `,`, `.`, `:`, `;`, `!`, `?`, `()`
+  - Chinese text uses Chinese punctuation: `""`，`，`，`。`，`：`，`；`，`！`，`？`，`（）`
+  - This applies to all punctuation marks, not just quotation marks
   - Inline code uses backticks \`code\`
 - Professional conversational tone, no filler, no emoji
