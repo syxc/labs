@@ -1,5 +1,5 @@
 ---
-name: Commit
+name: commit
 description: "Create git commits and commit messages using scope-prefixed format — scope first, no type prefix."
 alwaysAllow: ["Bash"]
 ---
