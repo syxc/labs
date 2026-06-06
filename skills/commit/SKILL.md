@@ -80,10 +80,16 @@ Users may pass extra instructions. Handling rules:
 ## Workflow
 
 1. Check if user specified file paths or globs
-2. `git status` / `git diff --staged` to review changes
-3. `git log --oneline -n 50` to learn existing scope conventions
-4. Determine scope; match project conventions
-5. Ask user about ambiguous files
-6. Write `<scope>: <summary>`; add body only when WHY isn't obvious
-7. `git commit -m "..."` — no Co-authored-by
-8. Brief summary of what was committed
+2. `git status` to see all changes
+3. Stage files: `git add` specified files, or all changes if none specified
+4. `git diff --staged` to review what will be committed
+5. `git log --oneline -n 50` to learn existing scope conventions
+6. Determine scope; match project conventions
+7. If staged changes span multiple unrelated scopes, ask user about splitting
+8. Ask user about ambiguous files
+9. Write `<scope>: <summary>`; add body only when WHY isn't obvious
+10. Commit:
+    - No body: `git commit -m "<scope>: <summary>"`
+    - With body: `git commit -m "<scope>: <summary>" -m "<body>"`
+    - No Co-authored-by
+11. Brief summary of what was committed
