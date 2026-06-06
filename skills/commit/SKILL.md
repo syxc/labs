@@ -37,10 +37,10 @@ Check recent commits for existing scope conventions. Match them.
 
 ```
 src/auth/middleware.ts       → auth
-packages/parser/src/lex.ts  → parser
-apps/web/pages/index.tsx    → web
-internal/db/migrations/001  → db
-README.md                   → docs
+packages/parser/src/lex.ts   → parser
+apps/web/pages/index.tsx     → web
+internal/db/migrations/001   → db
+README.md                    → docs
 ```
 
 - Skip container dirs (`src/`, `lib/`, `app/`, `packages/`, `internal/`)
@@ -57,8 +57,8 @@ README.md                   → docs
 + auth: fix token refresh race condition
 + db: add user_preferences table migration
 
-- fix(auth): token refresh      (type prefix noise)
-- updated stuff                  (no scope, past tense)
+- fix(auth): token refresh    (type prefix noise)
+- updated stuff               (no scope, past tense)
 ```
 
 ## Notes
