@@ -65,6 +65,7 @@ README.md                    → docs
 
 - No `Signed-off-by`, `BREAKING CHANGE`, or other markers/footers.
 - If unsure whether a file should be committed, **ask the user**.
+- **NEVER** use literal `\n`, `\t` escape sequences in commit messages. Use actual newlines and indentation.
 
 ## Caller Arguments
 
