@@ -78,7 +78,7 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 
 {For daily Claude Code users: what to do today.}
 {For non-users: what to read or watch.}
-{If neither applies: write "观察" with what to watch.}
+{If neither applies: write “观察” with what to watch.}
 
 ---
 
@@ -106,7 +106,7 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 
 **建议动作：**
 
-{Only actions executable today. If no clear action: write "观察" with what to watch.}
+{Only actions executable today. If no clear action: write “观察” with what to watch.}
 
 ---
 
@@ -181,7 +181,7 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
     - Sentence-level punctuation (period, comma, colon, semicolon, question, exclamation) uses Chinese full-width marks: `。` `，` `：` `；` `！` `？`
     - English technical terms or proper nouns embedded in a Chinese sentence do NOT switch the punctuation to English — the sentence remains Chinese
   - **Quotation marks, by content type:**
-    - Chinese text quotation: Chinese double quotes `""` and single quotes `''` (full-width)
+    - Chinese text quotation: Chinese double quotes `“”` and single quotes `‘’` (full-width)
     - English phrases or technical terms inline: English double quotes `""` or single quotes `''` (half-width)
     - Inline code, commands, file paths, identifiers: backticks `` `code` ``
   - **Parentheses, by content:**
