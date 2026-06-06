@@ -26,9 +26,9 @@ Prompt 模板（`prompts/digest-morning-briefing.md`）基于 [kevinma2010 的 g
 
 ## 依赖
 
-- feed 数据来源：[zarazhangrui/follow-builders](https://github.com/zarazhangrui/follow-builders) 的本地 clone
-- 博客仓库：[syxc/syxc.github.io](https://github.com/syxc/syxc.github.io) 的本地 clone
-- 运行时：mise (node), python3
+- feed 数据来源: [zarazhangrui/follow-builders](https://github.com/zarazhangrui/follow-builders) 的本地 clone
+- 博客仓库: [syxc/syxc.github.io](https://github.com/syxc/syxc.github.io) 的本地 clone
+- 运行时: mise (node), python3
 
 ## 恢复步骤
 
