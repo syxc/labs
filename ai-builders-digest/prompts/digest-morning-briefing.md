@@ -82,7 +82,7 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 
 ---
 
-## 事件 1: {one-sentence title}
+## 事件 1：{one-sentence title}
 
 {Optional: ### subtitle if the event needs supplementary context}
 
@@ -110,7 +110,7 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 
 ---
 
-## 事件 2: {title}
+## 事件 2：{title}
 
 {Same format}
 
@@ -147,8 +147,8 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 
 ## Formatting Rules (GFM Standard)
 
-1. **Bold labels** (`**发生了什么:**`) — add a blank line after the label before the body text
-2. **Event section headers** (`## 事件 N:`) — keep on one line; only add `### subtitle` if supplementary context is needed
+1. **Bold labels** (`**发生了什么：**`) — add a blank line after the label before the body text
+2. **Event section headers** (`## 事件 N：`) — keep on one line; only add `### subtitle` if supplementary context is needed
 3. **URLs** — use reference-style links `[display text][ref-N]` in body, collect URLs at bottom under `<!-- links -->`
 4. **Tables** — use minimal GFM format: no manual space alignment, just `| col | col |` with `|---|---|` separator
 5. **Section breaks** — use `---` (three hyphens, no spaces) between events

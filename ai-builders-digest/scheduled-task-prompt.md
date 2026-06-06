@@ -13,7 +13,7 @@
 - 检查 `src/content/blog/ai/YYYY-MM/ai-builders-YYYY-MM-DD.md` 是否已存在（在博客仓库 `$HOME/Workspace/demos/syxc.github.io` 中），如果今天已发布过则跳过整个流程
 
 步骤：
-1. 先拉取上游 feed 更新: `cd $HOME/ai/niuma/follow-builders && git pull`
+1. 先拉取上游 feed 更新：`cd $HOME/ai/niuma/follow-builders && git pull`
 2. 运行 `bash $HOME/.follow-builders/run-digest.sh` 拉取最新 feed 数据并生成 prompt 文件
 3. 读取 prompt 模板 `$HOME/.follow-builders/prompts/digest-morning-briefing.md` 中的规则
 4. 读取 JSON blob `$HOME/.follow-builders/cache/digest-input-YYYY-MM-DD.json` 中的原始 feed 数据（用今天日期替换 YYYY-MM-DD）
