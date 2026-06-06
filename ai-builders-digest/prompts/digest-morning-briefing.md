@@ -66,15 +66,15 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 ```markdown
 # AI Builders 早报｜{YYYY-MM-DD}
 
-**今天最重要的事:**
+**今天最重要的事：**
 
 {One sentence: the main thread worth watching today.}
 
-**为什么重要:**
+**为什么重要：**
 
 {One sentence: impact on AI builders.}
 
-**我今天要不要跟进:**
+**我今天要不要跟进：**
 
 {For daily Claude Code users: what to do today.}
 {For non-users: what to read or watch.}
@@ -86,25 +86,25 @@ Output MUST follow this exact structure. Today's date in the header uses YYYY-MM
 
 {Optional: ### subtitle if the event needs supplementary context}
 
-**发生了什么:**
+**发生了什么：**
 
 {2-3 sentences of core facts. Specific events first, necessary background second. No vague evaluations. Use bullet lists for parallel information.}
 
-**大家在讨论什么:**
+**大家在讨论什么：**
 
 - Discussion point 1. Must come from source content or clearly derivable discussion direction.
 - Discussion point 2. Max 2 points.
 
-**代表来源:**
+**代表来源：**
 
 - Author/site name: [display text][ref-1] | engagement data or source type
 - Author/site name: [display text][ref-2] | engagement data or source type
 
-**我的判断:**
+**我的判断：**
 
 {1-2 sentences: why this matters, reference value for Chinese developers / AI product people / entrepreneurs. Neutral tone, avoid absolutes and over-prediction.}
 
-**建议动作:**
+**建议动作：**
 
 {Only actions executable today. If no clear action: write "观察" with what to watch.}
 
