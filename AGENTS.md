@@ -58,4 +58,3 @@ Extensions for [pi coding agent](https://github.com/earendil-works/pi/tree/main/
 
 - `claude-rules.ts` — loads `.claude/rules/*.md` (user + project level, path-scoped support)
 - `rtk-integration.ts` — auto-rewrites bash tool calls via [RTK](https://github.com/rtk-ai/rtk) for 40-90% token savings
-- `hindsight/` — placeholder directory (only `package-lock.json`, not a functional extension yet)
