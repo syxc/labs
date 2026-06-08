@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": ["Bash(npx ducksearch search:*)", "Bash(find:*)", "Bash(npx ducksearch:*)"],
+    "deny": [
+      "Read(*.env)",
+      "Read(*.env.*)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Read(*id_rsa*)",
+      "Read(*id_ed25519*)",
+      "Read(*.aws/credentials*)",
+      "Read(*.ssh/config*)",
+      "Read(*secrets*)",
+      "Read(*token*)",
+      "Bash(rm -rf *)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(*prisma reset*)"
+    ],
+    "ask": ["Bash(*pr merge*)", "Bash(*git push*force*)", "Bash(*git reset*hard*)"],
+    "defaultMode": "bypassPermissions"
+  }
+}
