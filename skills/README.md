@@ -1,6 +1,6 @@
 # Agent Skills
 
-共 19 个 skills，来源数据来自 `.skill-lock.json`。
+共 20 个 skills，来源数据来自 `.skill-lock.json`。
 
 ---
 
@@ -10,6 +10,7 @@
 |-------|--------|--------|
 | agent-browser | vercel-labs/agent-browser | Vercel |
 | caveman | mattpocock/skills | @mattpocock |
+| commit | 自编 (skill.md) | — |
 | check | tw93/waza | @tw93 |
 | design | tw93/waza | @tw93 |
 | ducksearch | 自编 (skill.md) | — |
