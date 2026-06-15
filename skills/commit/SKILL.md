@@ -1,7 +1,7 @@
 ---
 name: commit
-description: "Create git commits and commit messages using scope-prefixed format — scope first, no type prefix."
-alwaysAllow: ["Bash"]
+description: 'Create git commits and commit messages using scope-prefixed format — scope first, no type prefix.'
+alwaysAllow: ['Bash']
 ---
 
 # Commit
@@ -71,11 +71,11 @@ README.md                    → docs
 
 Users may pass extra instructions. Handling rules:
 
-| User input | Behavior |
-|------------|----------|
-| Freeform instructions | Influence scope, summary, and body |
-| File paths / globs | Stage **only** specified files (unless explicitly told otherwise) |
-| Files + instructions | Honor both |
+| User input            | Behavior                                                          |
+| --------------------- | ----------------------------------------------------------------- |
+| Freeform instructions | Influence scope, summary, and body                                |
+| File paths / globs    | Stage **only** specified files (unless explicitly told otherwise) |
+| Files + instructions  | Honor both                                                        |
 
 ## Workflow
 

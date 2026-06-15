@@ -117,51 +117,6 @@
       "installedAt": "2026-06-15T08:21:41.473Z",
       "updatedAt": "2026-06-15T08:21:41.473Z"
     },
-    "ponytail": {
-      "source": "dietrichgebert/ponytail",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
-      "skillPath": "skills/ponytail/SKILL.md",
-      "skillFolderHash": "ad3f664c89e0463555486d42df0aee17a4bbe30d",
-      "installedAt": "2026-06-15T08:23:24.995Z",
-      "updatedAt": "2026-06-15T08:23:24.995Z"
-    },
-    "ponytail-audit": {
-      "source": "dietrichgebert/ponytail",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
-      "skillPath": "skills/ponytail-audit/SKILL.md",
-      "skillFolderHash": "fb032279bb5a4342f81484aa889b3bbc6a61210a",
-      "installedAt": "2026-06-15T08:23:24.998Z",
-      "updatedAt": "2026-06-15T08:23:24.998Z"
-    },
-    "ponytail-debt": {
-      "source": "dietrichgebert/ponytail",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
-      "skillPath": "skills/ponytail-debt/SKILL.md",
-      "skillFolderHash": "2ccfe92ab8e71ebbf6052d9a0b7b01614e5f9290",
-      "installedAt": "2026-06-15T08:23:24.999Z",
-      "updatedAt": "2026-06-15T08:23:24.999Z"
-    },
-    "ponytail-help": {
-      "source": "dietrichgebert/ponytail",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
-      "skillPath": "skills/ponytail-help/SKILL.md",
-      "skillFolderHash": "d3a385f52a8ff841280985c9a821cda889a33697",
-      "installedAt": "2026-06-15T08:23:25.000Z",
-      "updatedAt": "2026-06-15T08:23:25.000Z"
-    },
-    "ponytail-review": {
-      "source": "dietrichgebert/ponytail",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/dietrichgebert/ponytail.git",
-      "skillPath": "skills/ponytail-review/SKILL.md",
-      "skillFolderHash": "afe1352ad3e268aeb292d64c7fe0e53ad86f34ee",
-      "installedAt": "2026-06-15T08:23:25.001Z",
-      "updatedAt": "2026-06-15T08:23:25.001Z"
-    },
     "caveman": {
       "source": "mattpocock/skills",
       "sourceType": "github",

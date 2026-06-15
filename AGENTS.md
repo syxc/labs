@@ -6,19 +6,6 @@ Guidance for AI coding agents working in this repository.
 
 Personal collection of tools, scripts, AI agent extensions, and prompt templates. No build system, no centralized dependencies — each sub-project runs independently.
 
-## Commit Convention
-
-```
-<scope>: <summary>
-```
-
-- **scope** REQUIRED — infer from changed file paths + `git log --oneline -50`
-- **summary** imperative mood, ≤72 chars, no trailing period, first word must be a verb
-- NO type prefix (`feat`, `fix`, `chore`, etc.) — earlier commits may still use them, but new commits must not
-- NO literal escape sequences (`\n`, `\t`) — use actual newlines/indentation
-- NO Co-Authored-By, Signed-off-by, BREAKING CHANGE footers
-- One commit = one logical change
-
 ## Sub-projects
 
 ### `skills/` — Agent Prompt Templates
