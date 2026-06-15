@@ -1,6 +1,6 @@
 # Agent Skills
 
-共 20 个 skills，来源数据来自 `.skill-lock.json`。
+来源数据来自 `.skill-lock.json`。
 
 ---
 
@@ -35,7 +35,6 @@ npx skills add tw93/waza -s check -s design -s hunt -s write -g -y
 # mattpocock/skills
 npx skills add mattpocock/skills -s caveman -s handoff -s review -g -y
 
-
 # 其他独立包
 npx skills add vercel-labs/agent-skills -s vercel-react-best-practices -g -y
 npx skills add vercel-labs/agent-browser -s agent-browser -g -y
@@ -44,4 +43,12 @@ npx skills add anthropics/skills -s skill-creator -g -y
 ```
 
 ## 移除
+
+```bash
+# 单个
+npx skills remove -g -s <skill> -y
+
+# 整包（示例：移除 ponytail 系列）
+npx skills remove -g -s ponytail -s ponytail-audit -s ponytail-debt -s ponytail-help -s ponytail-review -y
+```
 
