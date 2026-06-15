@@ -10,12 +10,12 @@
 |-------|--------|--------|
 | agent-browser | vercel-labs/agent-browser | Vercel |
 | caveman | mattpocock/skills | @mattpocock |
-| commit | 自编 (skill.md) | — |
+| commit | 自建 (skill.md) | — |
 | check | tw93/waza | @tw93 |
 | design | tw93/waza | @tw93 |
-| ducksearch | 自编 (skill.md) | — |
+| ducksearch | 自建 (skill.md) | — |
 | find-skills | vercel-labs/skills | Vercel |
-| ghr | 自编 (syxc/gh-repo-cli) | — |
+| ghr | 自建 (syxc/gh-repo-cli) | — |
 | github | mitsuhiko/agent-stuff | @mitsuhiko |
 | handoff | mattpocock/skills | @mattpocock |
 | hunt | tw93/waza | @tw93 |
