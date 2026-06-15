@@ -1,43 +1,60 @@
-# Skills
+# Agent Skills
 
-Alma / Claude Code / 其他 AI agent 的快捷提示（prompt template）集合。
+共 19 个 skills，来源数据来自 `.skill-lock.json`。
 
-## 结构
+---
 
-```
-skills/
-└── <skill-name>/
-    └── SKILL.md    # prompt 模板（YAML frontmatter + 正文）
-```
+## 来源索引
 
-每个 skill 是一个独立目录，核心文件为 `SKILL.md`。Alma 通过 symlink 加载 `~/.config/alma/skills/` 下的目录。
+| Skill | Source | Author |
+|-------|--------|--------|
+| agent-browser | vercel-labs/agent-browser | Vercel |
+| caveman | mattpocock/skills | @mattpocock |
+| check | tw93/waza | @tw93 |
+| design | tw93/waza | @tw93 |
+| ducksearch | 自编 (skill.md) | — |
+| find-skills | vercel-labs/skills | Vercel |
+| ghr | 自编 (syxc/gh-repo-cli) | — |
+| github | mitsuhiko/agent-stuff | @mitsuhiko |
+| handoff | mattpocock/skills | @mattpocock |
+| hunt | tw93/waza | @tw93 |
+| ponytail | dietrichgebert/ponytail | @dietrichgebert |
+| ponytail-audit | dietrichgebert/ponytail | ← |
+| ponytail-debt | dietrichgebert/ponytail | ← |
+| ponytail-help | dietrichgebert/ponytail | ← |
+| ponytail-review | dietrichgebert/ponytail | ← |
+| review | mattpocock/skills | @mattpocock |
+| skill-creator | anthropics/skills | Anthropic |
+| vercel-react-best-practices | vercel-labs/agent-skills | Vercel |
+| write | tw93/waza | @tw93 |
 
-## 使用
+---
 
-### Alma
-
-将 skill 目录 symlink 到 `~/.config/alma/skills/`：
+## 安装
 
 ```bash
-ln -s $HOME/Workspace/labs/skills/<skill-name> ~/.config/alma/skills/<skill-name>
+# tw93/waza
+npx skills add tw93/waza -s check -s design -s hunt -s write -g -y
+
+# mattpocock/skills
+npx skills add mattpocock/skills -s caveman -s handoff -s review -g -y
+
+# dietrichgebert/ponytail
+npx skills add dietrichgebert/ponytail -g -y
+
+# 其他独立包
+npx skills add vercel-labs/agent-skills -s vercel-react-best-practices -g -y
+npx skills add vercel-labs/agent-browser -s agent-browser -g -y
+npx skills add mitsuhiko/agent-stuff -s github -g -y
+npx skills add anthropics/skills -s skill-creator -g -y
 ```
 
-在聊天中输入 `/review` 即可调用。
+## 移除
 
-### Claude Code
+```bash
+# 单个
+npx skills remove -g -s <skill> -y
 
-将 skill 目录 symlink 到 `~/.claude/skills/` 或项目的 `.claude/skills/`。
-
-## Skill 列表
-
-| Skill | 说明 | 来源 Prompt |
-|-------|------|-------------|
-| [review](review/) | 结构化代码审查：正确性、回归、边界、测试、安全、性能 | "Review all changes in this worktree. Focus on correctness, regressions, edge cases, and missing tests. List concrete issues first, then note residual risks." |
-
-## 新增 Skill
-
-1. 在 `skills/` 下创建同名目录和 `SKILL.md`
-2. `SKILL.md` 需包含 YAML frontmatter（`name`, `description`）
-3. 正文记录 source prompt 和模板内容
-4. 更新本 README 的 Skill 列表
-5. 如需 Alma 使用，创建 symlink
+# 整包
+npx skills remove -g -s ponytail -s ponytail-audit -s ponytail-debt -s ponytail-help -s ponytail-review -y
+```
