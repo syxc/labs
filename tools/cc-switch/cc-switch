@@ -265,23 +265,16 @@ switch_provider() {
     cp "$SETTINGS_FILE" "$SETTINGS_FILE.bak"
   fi
 
-  # Update settings.json (without ANTHROPIC_AUTH_TOKEN, it comes from env)
+  # Extract all env-relevant fields from provider config (everything except name and ANTHROPIC_AUTH_TOKEN_VAR)
+  local env_json
+  env_json=$(jq ".[\"$provider\"] | del(.name, .ANTHROPIC_AUTH_TOKEN_VAR)" "$PROVIDERS_FILE")
+
+  # Update settings.json — merge provider env fields into .env (preserves existing non-overlapping keys)
+  # ANTHROPIC_AUTH_TOKEN is deliberately NOT written; it comes from the env file
   jq \
-    --arg base_url "$base_url" \
-    --arg model "$model" \
-    --arg haiku "$haiku" \
-    --arg sonnet "$sonnet" \
-    --arg opus "$opus" \
-    --arg subagent_model "$subagent_model" \
-    '
-    .env.ANTHROPIC_BASE_URL = $base_url |
-    .env.ANTHROPIC_MODEL = $model |
-    .env.ANTHROPIC_DEFAULT_HAIKU_MODEL = $haiku |
-    .env.ANTHROPIC_DEFAULT_SONNET_MODEL = $sonnet |
-    .env.ANTHROPIC_DEFAULT_OPUS_MODEL = $opus |
-    .env.CLAUDE_CODE_SUBAGENT_MODEL = $subagent_model |
-    del(.env.ANTHROPIC_AUTH_TOKEN)
-    ' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp"
+    --argjson env "$env_json" \
+    '.env = (.env * $env) | del(.env.ANTHROPIC_AUTH_TOKEN)' \
+    "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp"
 
   mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 

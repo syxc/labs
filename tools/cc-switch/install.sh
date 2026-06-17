@@ -34,16 +34,19 @@ if [[ ! -f ~/.zshenv.env ]]; then
 # ============================================================================
 
 # MiMo
-export TP_MIMO_API_KEY="your-mimo-key-here"
+export MIMO_API_KEY="your-mimo-key-here"
 
 # GLM
-export ZAI_API_KEY="your-glm-key-here"
+export ZHIPU_API_KEY="your-glm-key-here"
 
 # DeepSeek
 export CC_DEEPSEEK_API_KEY="your-deepseek-key-here"
 
+# OpenCode Go
+export OC_GO_CC_AUTH_TOKEN="your-opencode-token-here"
+
 # Claude Code - 由 cc-switch 管理
-export ANTHROPIC_AUTH_TOKEN="${TP_MIMO_API_KEY}"
+export ANTHROPIC_AUTH_TOKEN="${MIMO_API_KEY}"
 EOF
   echo "请编辑 ~/.zshenv.env 填入你的 API Keys"
 else

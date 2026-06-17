@@ -2,29 +2,40 @@
   "mimo": {
     "name": "MiMo Token Plan",
     "ANTHROPIC_BASE_URL": "https://token-plan-cn.xiaomimimo.com/anthropic",
-    "ANTHROPIC_AUTH_TOKEN_VAR": "TP_MIMO_API_KEY",
-    "ANTHROPIC_MODEL": "mimo-v2.5",
+    "ANTHROPIC_AUTH_TOKEN_VAR": "MIMO_API_KEY",
+    "ANTHROPIC_MODEL": "mimo-v2.5-pro[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "mimo-v2.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "mimo-v2.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "mimo-v2.5-pro",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "mimo-v2.5-pro[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "mimo-v2.5-pro[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "mimo-v2.5"
   },
   "glm": {
     "name": "GLM Coding Plan",
     "ANTHROPIC_BASE_URL": "https://open.bigmodel.cn/api/anthropic",
-    "ANTHROPIC_AUTH_TOKEN_VAR": "ZAI_API_KEY",
-    "ANTHROPIC_MODEL": "glm-4.7",
+    "ANTHROPIC_AUTH_TOKEN_VAR": "ZHIPU_API_KEY",
+    "ANTHROPIC_MODEL": "glm-5.2[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.5-air",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-5-turbo",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-5.1",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "glm-4.7"
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-5.2[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-5.2[1m]",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "glm-4.7",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "1000000"
   },
   "deepseek": {
     "name": "DeepSeek API",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
     "ANTHROPIC_AUTH_TOKEN_VAR": "CC_DEEPSEEK_API_KEY",
     "ANTHROPIC_MODEL": "deepseek-v4-pro[1m]",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash"
+  },
+  "opencode": {
+    "name": "OpenCode Go",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:3456",
+    "ANTHROPIC_AUTH_TOKEN_VAR": "OC_GO_CC_AUTH_TOKEN",
+    "ANTHROPIC_MODEL": "qwen3.7-plus[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1m]",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash"

@@ -64,6 +64,7 @@ cc-switch            # 查看可用供应商
 cc-switch mimo       # 切换到 MiMo（自动 reload）
 cc-switch glm        # 切换到 GLM（自动 reload）
 cc-switch deepseek   # 切换到 DeepSeek（自动 reload）
+cc-switch opencode   # 切换到 OpenCode Go（自动 reload）
 cc-switch -s         # 查看当前配置（不 reload）
 cc-switch --validate # 校验配置（不 reload）
 ```
@@ -125,6 +126,6 @@ brew install jq
 **环境变量未设置**
 
 ```bash
-echo $TP_MIMO_API_KEY  # 检查是否已设置
+echo $MIMO_API_KEY  # 检查是否已设置
 source ~/.zshenv.env   # 重新加载
 ```
