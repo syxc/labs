@@ -1,20 +1,25 @@
 # Changelog
 
-## 2026-06-27
+## v1.1.0 - 2026-06-27
 
-### Initial pack created
-建立了 Aside 中文文档包的第一版，包含以下内容：
+### Improved
+- Added a GitHub-friendly root `README.md`
+- Added `README.md` files for `guides/`, `templates/`, and `reference/`
+- Added back-to-home links in major documents
+- Added table-of-contents navigation to long-form guides
+- Improved repository landing page with audience guidance and reading paths
+- Renamed document files to GitHub-friendly English slugs
+- Added `CONTRIBUTING.md` for future maintenance
+- Removed redundant `INDEX.md`
+- Standardized document headers across guides, templates, and reference docs
 
-- `00-README-Asides指南目录.md`
-- `01-Aside浏览器AI完整指南.md`
-- `02-Aside浏览器AI使用指南.md`
-- `03-Aside浏览器AI提示词模板库.md`
-- `04-Aside浏览器AI分类提示词模板库.md`
-- `05-Aside浏览器AI避坑手册.md`
-- `06-Aside浏览器快捷键与设置建议.md`
-- `07-个人版Aside常用提示词收藏.md`
-- `08-Aside文档包索引清单.txt`
-- `INDEX.md`
+## v1.0.0 - 2026-06-27
+
+### Added
+- Initial Aside 中文文档包
+- Guides, templates, and reference docs
+- Unified numbered file naming for stable sorting
+- A maintainable knowledge-pack layout for long-term use
 
 ### Included themes
 - Aside AI 的核心使用逻辑
@@ -24,9 +29,6 @@
 - 常见误区与避坑建议
 - 快捷键、权限、provider 和工作流建议
 - 个人高频常用提示词收藏
-
-### Structure choice
-文档包采用统一编号命名，方便排序和长期维护。
 
 ### Suggested next updates
 后续如果继续维护，建议优先记录：
