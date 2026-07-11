@@ -1,0 +1,110 @@
+#!/bin/sh
+# RTK dispatch — single data source for all rtk-shim commands.
+# Symlinked from each command name; reads $0 to know which command to proxy.
+# Only activates inside NewMax (CLAUDE_CONFIG_DIR contains .newmax).
+# Outside NewMax, falls through to the real command via PATH walk.
+#
+# Fixes applied (2026-07-11):
+#   A. basename → ${0##*/} (eliminates subshell fork on hot path)
+#   B. rtk path → bare name (resolved via PATH, no hardcoded path)
+#   C. Single source → symlinks from each command name
+#   D. git/gh write ops → bypass rtk (interactive/destructive safety)
+#   E. CLAUDECODE guard removed (CLAUDE_CONFIG_DIR suffices)
+#   F. cat safety gate — rtk read only takes file args, never stdin, so
+#      'cat > file', heredocs and pipes fall through to real cat (prevents
+#      silent data loss / target-file clobbering)
+#   G. git/gh global flags (-C/-c, -R/--repo) skipped when locating the verb,
+#      so 'git -C path commit' / 'gh -R o/r pr merge' still bypass
+
+_name=${0##*/}
+
+# Find and exec the real command in PATH (skip rtk-shim dir to avoid recursion)
+_fallback() {
+  _oldIFS="$IFS"; IFS=':'
+  for _d in $PATH; do
+    IFS="$_oldIFS"
+    case "$_d" in *rtk-shim*) continue ;; esac
+    [ -x "$_d/$_name" ] && exec "$_d/$_name" "$@"
+  done
+  echo "$0: command not found" >&2; exit 127
+}
+
+# Guard 1: not NewMax → pass through to real command
+case "$CLAUDE_CONFIG_DIR" in *.newmax*) ;; *) _fallback "$@";; esac
+
+# Guard 2: already inside RTK → pass through (prevents recursion)
+[ -n "$RTK_SHIM_ACTIVE" ] && _fallback "$@"
+
+# Guard 3: git/gh write operations → bypass rtk for interactive/destructive safety.
+# Scan past global flags (-C/-c for git, -R/--repo/--hostname for gh) to find the
+# real verb, so 'git -C path commit' and 'gh -R o/r pr merge' still bypass.
+# Known edge: 'git --git-dir /p commit' (space-sep value) mis-reads /p as verb;
+# the = form ('--git-dir=/p') works. Rare vs -C/-c, accepted.
+case "$_name" in
+  git)
+    _skip=0; _verb=""
+    for _a in "$@"; do
+      if [ "$_skip" = 1 ]; then _skip=0; continue; fi
+      case "$_a" in
+        -C|-c) _skip=1 ;;        # global flag taking a value
+        -*) ;;                   # other global flag (incl. -Cpath / -ck=v attached)
+        *) _verb="$_a"; break ;; # first non-flag token = subcommand
+      esac
+    done
+    case "$_verb" in
+      commit|push|rebase|merge|revert|cherry-pick|clean|restore|rm|mv|stash|bisect|reset|checkout|switch|branch|pull)
+        _fallback "$@"
+        ;;
+    esac
+    ;;
+  gh)
+    # gh layout: [global-flags] <entity> <action>. Find the 2nd non-flag token
+    # (the action) and bypass on write verbs.
+    _skip=0; _verb=""; _seen=0
+    for _a in "$@"; do
+      if [ "$_skip" = 1 ]; then _skip=0; continue; fi
+      case "$_a" in
+        -R|--repo|--hostname) _skip=1 ;;  # global flag taking a value
+        -*) ;;                            # other global flag
+        *)
+          _seen=$((_seen + 1))
+          [ "$_seen" = 2 ] && { _verb="$_a"; break; }
+          ;;
+      esac
+    done
+    case "$_verb" in
+      create|delete|rename|merge|close|reopen|review|edit|rerun|login|logout|upload)
+        _fallback "$@"
+        ;;
+    esac
+    ;;
+esac
+
+# Map command name to rtk subcommand. cat is special:
+#   rtk read only takes file ARGS, never stdin. So cat with no args (stdin /
+#   redirect / heredoc: 'cat', 'cat > f', 'cat <<EOF', 'echo|cat') or with flags
+#   rtk read doesn't understand must fall through to real cat — otherwise
+#   'cat > file' silently clobbers the target with rtk read's empty output.
+case "$_name" in
+  cat)
+    _ok=1
+    [ $# -gt 0 ] || _ok=0                 # no args → stdin/redirect → real cat
+    for _a in "$@"; do
+      case "$_a" in
+        -n|--line-numbers) ;;             # the only cat flag rtk read supports
+        -*) _ok=0 ;;                      # any other flag → unknown, play safe
+      esac
+    done
+    if [ "$_ok" = 1 ]; then
+      _rtk_cmd="read"
+    else
+      _fallback "$@"
+    fi
+    ;;
+  *)
+    _rtk_cmd="$_name"
+    ;;
+esac
+
+export RTK_SHIM_ACTIVE=1
+exec rtk "$_rtk_cmd" "$@"
