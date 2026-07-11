@@ -1,6 +1,6 @@
 # NewMax RTK Shim 方案备份
 
-NewMax 对 [RTK](https://github.com/rtk-ai/rtk) 的 PATH shim 适配快照，2026-07-12。
+NewMax 对 [RTK](https://github.com/rtk-ai/rtk) 的 PATH shim 适配快照。**NewMax 1.1.2** / 2026-07-12。
 
 ## 原理
 
@@ -30,4 +30,4 @@ CLAUDE_CONFIG_DIR=$HOME/.newmax sh -c 'echo X|~/.newmax/rtk-shim/cat>/tmp/_t' &&
 - `install.sh` — 还原脚本
 - `CHANGELOG.md` — 修复历史与已知边界
 
-兼容：NewMax 当前版本、RTK 0.43.0、`/bin/sh`(POSIX)。
+兼容：NewMax 1.1.2、RTK 0.43.0、`/bin/sh`(POSIX)。
