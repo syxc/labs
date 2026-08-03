@@ -10,3 +10,6 @@ Thumbs.db
 # Logs
 *.log
 .claude/settings.local.json
+
+# Backups
+*.bak
