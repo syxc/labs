@@ -1,6 +1,6 @@
 # Agent Prompts 同步系统
 
-把 7 个 AI agent 的全局提示词（pi / codebuddy / opencode / omp / qwen / craft-agent / factory）从**单一模板 + 配置**生成，避免手工同步 10 份近重复文件。以 `.claude/CLAUDE.md` 和 `.codex/AGENTS.md` 终稿为理念基准。
+把 CLAUDE.md 与 7 个 AI agent 的全局提示词（pi / codebuddy / opencode / omp / qwen / craft-agent / factory）从**单一模板 + 配置**生成，避免手工同步近重复文件。以 `.claude/CLAUDE.md` 和 `.codex/AGENTS.md` 终稿为理念基准。
 
 ## 为什么需要这个
 
@@ -15,7 +15,7 @@ prompts/
 ├── core.md              # 主干模板，含 {{VAR}} 占位符
 ├── agents/*.toml        # 每个 agent 的差异配置
 ├── snippets/*.md        # 差异片段（从 golden 提取）
-├── golden/*.md          # 冻结基线（已知正确的 7 份文件）
+├── golden/*.md          # 冻结基线（已知正确的 8 份文件：claude + 7 agent）
 ├── out/                 # build.py 生成产物（暂存，不直接部署）
 ├── build.py             # 渲染：core + config + snippets → out/
 ├── check.py             # 准确性测试：out/ 必须逐字节 == golden/
@@ -81,4 +81,6 @@ python3 extract.py         # golden 变更后，重新提取 snippet
 
 ## 范围
 
-仅覆盖 7 个"派生"agent。基准 3 份（`.codex/AGENTS.md` / `.claude/CLAUDE.md` / `.zcode/AGENTS.md`）保持手工独立——它们是源头，且独有部分复杂（codex 多代理调度、claude progress.md、zcode ponytail 章节）。
+覆盖 CLAUDE.md 与 7 个"派生"agent，共 8 份。CLAUDE.md 已纳入（2026-08-14）：`golden/claude.md` 由 build 逐字节复现，差异走 `git_claude_src`（保留 CLAUDE 原版 "hooks" 措辞）与 `context_mgmt_claude`（progress.md 版上下文）两个 snippet。
+
+基准 2 份保持手工独立：`.codex/AGENTS.md`（Sol/Terra/Luna 多代理段 + core.md 硬编码区差异，纳入需先参数化 core）、`.zcode/AGENTS.md`（ponytail 章节独有）。
