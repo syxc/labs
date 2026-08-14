@@ -51,6 +51,11 @@ python3 extract.py         # golden 变更后，重新提取 snippet
 3. check 显示哪些文件变了、变了几行；确认符合预期
 4. 把 `out/` 部署到各 agent 目录（见各 toml 的 `output`）
 
+**直接改了 `~/.claude/CLAUDE.md`**（高频场景，注意双源）：
+1. `cp ~/.claude/CLAUDE.md golden/claude.md`
+2. 对照 diff 调整 `core.md` / `git_claude_src` / `context_mgmt_claude` 到零 diff
+3. check 只比 `out/` vs `golden/`，**不感知本地 CLAUDE.md 的变化**——改完不回填 golden 会静默漂移
+
 **某 agent 加专属规则**：
 1. 改它的 `agents/<name>.toml` 或对应 `snippets/`
 2. build + check
