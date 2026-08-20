@@ -1,8 +1,8 @@
 # Agent Prompts 同步系统
 
-从一份共享模板生成 Claude 与 7 个 Agent 的全局提示词：CodeBuddy、Craft Agent、Factory、OMP、OpenCode、Pi、Qwen。公共规则以当前 `~/.claude/CLAUDE.md` 为基准，平台差异通过配置和片段保留。
+从一份共享模板生成 Claude 与 8 个 Agent 的全局提示词：CodeBuddy、Craft Agent、Factory、OMP、OpenCode、Pi、Qwen、ZCode。公共规则以当前 `~/.claude/CLAUDE.md` 为基准，平台差异通过配置和片段保留。
 
-Codex 与 Zcode 不在生成或部署范围内。`~/.codex/AGENTS.md` 包含 Codex 专属的模型与 Agent 编排，`~/.zcode/AGENTS.md` 包含 Zcode 专属规则，两者始终独立维护。
+Codex 不在生成或部署范围内；`~/.codex/AGENTS.md` 包含 Codex 专属的模型与 Agent 编排，始终独立维护。ZCode 纳入同步，但保留自身的内联工具规则，不照搬 Claude 专属引用。
 
 ## 目录
 
@@ -47,8 +47,9 @@ python3 extract.py
 - CodeBuddy、Pi、OpenCode 保留各自的跨会话上下文措辞；生成文件不添加说明性 HTML 注释头。
 - OpenCode 保留 context-mode 章节。
 - Claude 使用原生 `@TOOLS.md` 和 `@RTK.md` 引用，加载同目录文件。
-- CodeBuddy、Craft Agent、OpenCode、Pi、OMP 内联同一组工具命令，Qwen 与 Factory 使用更严格的命令版本。
+- CodeBuddy、Craft Agent、OpenCode、Pi、OMP、ZCode 内联同一组工具命令，Qwen 与 Factory 使用更严格的命令版本。
 - Pi、OMP、Factory 保留 `@RTK.md` 尾部作为兼容入口和规则提示。RTK 的实际命令改写依赖各客户端已配置的 hook 或 extension，不能只依赖这行文本。
+- ZCode 不展开 `@import` 或 `@include`，因此不使用 Claude 的 `@TOOLS.md`、`@RTK.md` 引用；RTK 与 context-mode 由其插件提供。
 - Qwen 与 Factory 保留更严格的 Git hooks 规则；其余 Agent 保留各自家族措辞。
 
 ## 更新流程
