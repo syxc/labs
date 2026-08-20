@@ -4,14 +4,7 @@
   - 格式为 `<scope>: <summary>`（scope 必填，summary 以动词开头，无需 type tag）
   - 正文使用真实换行和缩进
   - 禁止写入字面量 `\n`、`\t`，以免提交钩子解析失败
-
-<example>
-  <good>auth: verify token expiry before refresh</good>
-  <bad>fix: \n fixed the bug</bad>
-</example>
-
-- 仅在用户明确要求时创建 commit
-- 仅在用户明确要求时 push；push 前复查状态、目标分支和待提交内容
+- 仅在用户明确要求时 commit 或 push；push 前复查状态、目标分支和待提交内容
 - 允许 amend 本地未推送的 commit；amend 已推送的 commit 须经用户明确同意
 - 提交始终走完整提交钩子流程，使用个人 author
 - 破坏性操作（reset --hard、force push、checkout .、restore .、clean -f、branch -D）仅在用户明确要求时执行
