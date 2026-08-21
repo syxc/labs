@@ -7,4 +7,4 @@
 - 禁止 skip hooks（--no-verify、--no-gpg-sign）和 Co-Authored-By，始终走正常 hooks 流程，使用个人 author
 - 破坏性操作（reset --hard、force push、checkout .、restore .、clean -f、branch -D）仅在用户明确要求时执行
 - 敏感文件（.env、credentials、*.pem、*.key）通过 .gitignore 排除；提交前检查暂存内容
-- 撤销已提交变更用 `git revert`；撤销本轮未提交改动用反向补丁以保留工作区内容，不用 `checkout .`、`restore .` 等会丢弃未提交改动的命令
+- 撤销已提交变更用 `git revert`；撤销未提交改动用反向补丁，不用 `checkout .`、`restore .`（会丢弃工作区内容）

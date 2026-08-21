@@ -7,7 +7,7 @@
 用法:
     python3 check.py            # 全量对比，打印差异摘要
     python3 check.py <name>     # 只看某个文件（如 pi），打印完整 diff
-    python3 check.py --deployed # 同时核对 TOML output 指向的实际文件
+    python3 check.py --deployed # 同时核对实际文件和统一 TOOLS.md
 
 退出码 0 = 全部零 diff（模板精确）；1 = 有差异或 out 缺失。
 """
@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parent
 GOLDEN = ROOT / "golden"
 OUT = ROOT / "out"
 AGENTS = ROOT / "agents"
+TOOLS = ROOT / "snippets" / "tools.md"
 
 
 def compare(name: str) -> tuple[bool, list[str]]:
@@ -66,6 +67,24 @@ def compare_deployed(name: str) -> tuple[bool, str]:
     return True, str(deployed)
 
 
+def compare_deployed_tools() -> tuple[bool, str]:
+    config = AGENTS / "claude.toml"
+    if not config.exists():
+        return False, "agents/claude.toml 缺失"
+    cfg = tomllib.loads(config.read_text(encoding="utf-8"))
+    output = cfg.get("output")
+    if not isinstance(output, str) or not output:
+        return False, "agents/claude.toml 缺少有效 output"
+    deployed = Path(output).expanduser().with_name("TOOLS.md")
+    if not TOOLS.exists():
+        return False, "snippets/tools.md 缺失"
+    if not deployed.exists():
+        return False, f"{deployed} 缺失"
+    if TOOLS.read_bytes() != deployed.read_bytes():
+        return False, f"{deployed} 与 snippets/tools.md 不一致"
+    return True, str(deployed)
+
+
 def main() -> int:
     check_deployed = "--deployed" in sys.argv[1:]
     args = [a for a in sys.argv[1:] if not a.startswith("-")]
@@ -91,6 +110,7 @@ def main() -> int:
     # 单文件模式：打印完整 diff
     if args:
         success = True
+        check_tools = False
         for name in args:
             name = name if name.endswith(".md") else name + ".md"
             if name not in configured:
@@ -108,6 +128,11 @@ def main() -> int:
                 deployed_ok, detail = compare_deployed(name)
                 print(f"{'✓' if deployed_ok else '✗'} {name} 部署: {detail}")
                 success = success and deployed_ok
+                check_tools = check_tools or name == "claude.md"
+        if check_tools:
+            tools_ok, tools_detail = compare_deployed_tools()
+            print(f"{'✓' if tools_ok else '✗'} tools.md 部署: {tools_detail}")
+            success = success and tools_ok
         return 0 if success else 1
 
     # 全量模式
@@ -136,8 +161,12 @@ def main() -> int:
             print(f"{'✓' if ok else '✗'} {name} 部署: {detail}")
             if not ok:
                 deployed_failed.append(name)
+        tools_ok, tools_detail = compare_deployed_tools()
+        print(f"{'✓' if tools_ok else '✗'} tools.md 部署: {tools_detail}")
+        if not tools_ok:
+            deployed_failed.append("tools.md")
         if deployed_failed:
-            print(f"{bar}\n失败 {len(deployed_failed)}/{total}：部署文件与生成结果不一致。")
+            print(f"{bar}\n失败 {len(deployed_failed)} 个部署目标：部署文件与生成结果不一致。")
             return 1
     print(f"\n{bar}\n全部 {total} 个文件零 diff — 模板精确复现 golden。")
     return 0

@@ -22,7 +22,7 @@ prompts/
 
 - `core.md`：公共规则和占位符
 - `agents/*.toml`：输出路径、产品名和平台差异
-- `snippets/*.md`：上下文、Git、编码规范、RTK、context-mode 等差异片段
+- `snippets/*.md`：上下文、Git、编码规范、统一工具命令、RTK、context-mode 等片段
 - `golden/*.md`：已确认的逐字节基线
 - `out/*.md`：临时生成产物，不自动部署
 
@@ -38,7 +38,7 @@ python3 -m unittest -v test_prompts.py
 python3 extract.py
 ```
 
-`build.py` 会校验配置项和占位符，任一 Agent 生成失败就返回非零。`check.py` 会核对 `agents/`、`golden/`、`out/` 的文件集合，并要求生成结果与基线逐字节一致。加上 `--deployed` 后，还会核对各 TOML 中 `output` 指向的实际文件。
+`build.py` 会校验配置项和占位符，任一 Agent 生成失败就返回非零。`check.py` 会核对 `agents/`、`golden/`、`out/` 的文件集合，并要求生成结果与基线逐字节一致。加上 `--deployed` 后，还会核对各 TOML 中 `output` 指向的实际文件，以及 `~/.claude/TOOLS.md`。
 
 ## 同步规则
 
@@ -46,8 +46,7 @@ python3 extract.py
 - 其他 Agent：继承 Claude 的公共原则和精简结构，不机械复制平台专属机制。
 - CodeBuddy、Pi、OpenCode 保留各自的跨会话上下文措辞；生成文件不添加说明性 HTML 注释头。
 - OpenCode 保留 context-mode 章节。
-- Claude 使用原生 `@TOOLS.md` 和 `@RTK.md` 引用，加载同目录文件。
-- CodeBuddy、Craft Agent、OpenCode、Pi、OMP、ZCode 内联同一组工具命令，Qwen 与 Factory 使用更严格的命令版本。
+- `snippets/tools.md` 是工具命令的唯一来源。Claude 通过原生 `@TOOLS.md` 按需加载，其他 8 个 Agent 内联同一份内容。
 - Pi、OMP、Factory 保留 `@RTK.md` 尾部作为兼容入口和规则提示。RTK 的实际命令改写依赖各客户端已配置的 hook 或 extension，不能只依赖这行文本。
 - ZCode 不展开 `@import` 或 `@include`，因此不使用 Claude 的 `@TOOLS.md`、`@RTK.md` 引用；RTK 与 context-mode 由其插件提供。
 - Qwen 与 Factory 保留更严格的 Git hooks 规则；其余 Agent 保留各自家族措辞。
@@ -58,7 +57,7 @@ python3 extract.py
 2. 运行 `python3 build.py`，审查 `out/` 与现有 golden 的 diff。
 3. 确认后将 `out/*.md` 更新为 `golden/*.md`。
 4. 再运行 `python3 build.py && python3 check.py`。
-5. 部署前备份 TOML 中 `output` 指向的实际文件，再复制生成结果。
+5. 部署前备份 TOML 中 `output` 指向的实际文件和 `~/.claude/TOOLS.md`，再复制生成结果与统一工具命令。
 6. 运行 `python3 check.py --deployed`，确认部署文件与生成结果一致。
 
-构建和检查不会自动部署，也不会自动 commit 或 push。直接修改实际全局文件后，必须同步更新模板和对应 golden；`python3 check.py --deployed` 会报告尚未同步的部署文件。
+构建和检查不会自动部署，也不会自动 commit 或 push。直接修改 `~/.claude/TOOLS.md` 后，必须同步更新 `snippets/tools.md` 并重建 8 个内联 Agent；`python3 check.py --deployed` 会报告尚未同步的部署文件。

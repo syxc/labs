@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""extract.py — 从 golden/ 基线精确切片出当前使用的 snippet。
+"""extract.py — 从 golden/ 基线精确切片出可提取的 snippet。
 
-仅提取生成配置正在引用的差异片段；平台专属片段保留手工维护。
+平台专属片段和统一工具片段保留手工维护。
 幂等：重复运行覆盖相同结果。
 """
 import pathlib
@@ -22,6 +22,11 @@ def write(name: str, content: str) -> None:
 
 def slice_between(text: str, start: str, end: str) -> str:
     offset = text.index(start)
+    return text[offset:text.index(end, offset)]
+
+
+def slice_section_body(text: str, start: str, end: str) -> str:
+    offset = text.index(start) + len(start)
     return text[offset:text.index(end, offset)]
 
 
@@ -48,18 +53,14 @@ for agent in ("claude", "codebuddy", "pi", "opencode"):
     )
 
 # 工作流程、Git 与编码规范
-write("workflow_pre_claude.md", slice_between(codebuddy, "### 修改前置", "### Git"))
-write("workflow_pre_zcode.md", slice_between(omp, "### 修改前置", "### Git"))
+write("workflow_pre_claude.md", slice_section_body(codebuddy, "## 工作流程", "### Git"))
+write("workflow_pre_zcode.md", slice_section_body(omp, "## 工作流程", "### Git"))
 write("git_claude_src.md", slice_between(claude, "### Git", "## 编码规范"))
 write("git_claude.md", slice_between(codebuddy, "### Git", "## 编码规范"))
 write("git_zcode.md", slice_between(omp, "### Git", "## 编码规范"))
 write("git_qwen.md", slice_between(qwen, "### Git", "## 编码规范"))
 write("coding_claude.md", slice_between(codebuddy, "## 编码规范", "## 工具"))
 write("coding_zcode.md", slice_between(omp, "## 编码规范", "## 工具"))
-
-# 不支持 @ 引用的平台内联工具命令
-write("commands_a.md", codebuddy[codebuddy.index("### 命令参考") :])
-write("commands_c.md", qwen[qwen.index("### 命令参考") :])
 
 # 平台专属尾部
 write("context_mode.md", opencode[opencode.index("### context-mode") :])

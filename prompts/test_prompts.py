@@ -48,6 +48,30 @@ class PromptToolTests(unittest.TestCase):
             ):
                 self.assertEqual(check.main(), 1)
 
+    def test_deployed_tools_must_match_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agents = root / "agents"
+            agents.mkdir()
+            claude_dir = root / "claude"
+            claude_dir.mkdir()
+            (agents / "claude.toml").write_text(
+                f'output = "{claude_dir / "CLAUDE.md"}"\n', encoding="utf-8"
+            )
+            source = root / "tools.md"
+            source.write_text("source\n", encoding="utf-8")
+            (claude_dir / "TOOLS.md").write_text("deployed\n", encoding="utf-8")
+
+            with (
+                mock.patch.object(check, "AGENTS", agents),
+                mock.patch.object(check, "TOOLS", source),
+            ):
+                ok, _ = check.compare_deployed_tools()
+                self.assertFalse(ok)
+                (claude_dir / "TOOLS.md").write_text("source\n", encoding="utf-8")
+                ok, _ = check.compare_deployed_tools()
+                self.assertTrue(ok)
+
 
 if __name__ == "__main__":
     unittest.main()
