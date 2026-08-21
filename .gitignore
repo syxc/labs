@@ -13,3 +13,4 @@ Thumbs.db
 
 # Backups
 *.bak
+/agent_backup_*/

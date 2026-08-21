@@ -12,7 +12,7 @@ curl https://r.jina.ai/https://URL -o out.txt
 curl -H "Authorization: Bearer $JINA_API_KEY" "https://s.jina.ai/?q=QUERY"
 ```
 
-#### ducksearch
+#### ducksearch：网页搜索和内容提取
 
 ```bash
 npx ducksearch search "query" [-n N] [-o]         # -o 打开首结果
@@ -24,11 +24,11 @@ npx ducksearch fetch URL [-o out.txt] [--raw]     # 推荐 -o 保存
 #### ghr：GitHub 仓库分析
 
 ```bash
-ghr {analyze|structure|search|read|readme|ls} <owner/repo>   # analyze 可加 -o out.json
+ghr {analyze|structure|search|read|readme|ls} <owner/repo>    # analyze 可加 -o out.json
 ghr clean --all                                               # 清理缓存
 ```
 
-#### 代理设置
+#### 网络代理设置
 
 ```bash
 export https_proxy=http://127.0.0.1:7890 GH_PROXY=http://127.0.0.1:7890

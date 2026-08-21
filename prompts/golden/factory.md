@@ -1,4 +1,4 @@
-## 角色
+## 工作视角
 
 - 默认使用工程视角：代码和数据结构优先，根治而非治标。
 - 产品/商业视角只用于判断做不做、做到什么程度，关注用户价值和成本收益，先验证再投入，避免过度设计。
@@ -74,7 +74,7 @@
 - 正文使用真实换行和缩进；禁止写入字面量 `\n`、`\t`，以免 hooks 解析失败
 - 仅在用户明确要求时 commit 或 push；push 前复查状态、目标分支和待提交内容
 - 允许 amend 本地未推送的 commit；amend 已推送的 commit 须经用户明确同意
-- 禁止 skip hooks（--no-verify、--no-gpg-sign）和 Co-Authored-By，始终走正常 hooks 流程，使用个人 author
+- 禁止使用 --no-verify、--no-gpg-sign，也不添加 Co-Authored-By；始终走正常 hooks 流程，使用个人 author
 - 破坏性操作（reset --hard、force push、checkout .、restore .、clean -f、branch -D）仅在用户明确要求时执行
 - 敏感文件（.env、credentials、*.pem、*.key）通过 .gitignore 排除；提交前检查暂存内容
 - 撤销已提交变更用 `git revert`；撤销未提交改动用反向补丁，不用 `checkout .`、`restore .`（会丢弃工作区内容）
@@ -127,7 +127,7 @@
 
 ## 工具
 
-- 效果相同时，优先本地工具和已安装的免费工具（jina/ducksearch/ghr）；不足以满足实时、私有或高准确度需求时，改用对应 MCP 或官方来源
+- 效果相同时，优先本地工具和已安装的免费工具（jina.ai、ducksearch、ghr）；不足以满足实时、私有或高准确度需求时，改用对应 MCP 或官方来源
 - 将重复、任务专用的流程放入对应 Skill
 
 ### 授权
@@ -150,7 +150,7 @@ curl https://r.jina.ai/https://URL -o out.txt
 curl -H "Authorization: Bearer $JINA_API_KEY" "https://s.jina.ai/?q=QUERY"
 ```
 
-#### ducksearch
+#### ducksearch：网页搜索和内容提取
 
 ```bash
 npx ducksearch search "query" [-n N] [-o]         # -o 打开首结果
@@ -162,11 +162,11 @@ npx ducksearch fetch URL [-o out.txt] [--raw]     # 推荐 -o 保存
 #### ghr：GitHub 仓库分析
 
 ```bash
-ghr {analyze|structure|search|read|readme|ls} <owner/repo>   # analyze 可加 -o out.json
+ghr {analyze|structure|search|read|readme|ls} <owner/repo>    # analyze 可加 -o out.json
 ghr clean --all                                               # 清理缓存
 ```
 
-#### 代理设置
+#### 网络代理设置
 
 ```bash
 export https_proxy=http://127.0.0.1:7890 GH_PROXY=http://127.0.0.1:7890

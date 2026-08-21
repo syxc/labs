@@ -1,4 +1,4 @@
-### context-mode —— 上下文窗口优化
+### context-mode：上下文窗口优化
 
 核心原则：将原始数据留在 sandbox 中处理，避免占用 context window。
 
@@ -6,7 +6,7 @@
 
 分析/统计/过滤/比较/搜索/解析/转换数据时：用 `mcp__context-mode__ctx_execute(language, code)` 写代码处理，只用 `console.log()` 输出答案，不将原始数据读入 context。JavaScript（Node.js 内置：`fs`、`path`、`child_process`），`try/catch`，处理 `null`/`undefined`。一个脚本替代十次工具调用。
 
-大输出（>5KB）时传 `intent: "describe what to find"` —— 输出自动索引到 FTS5，仅匹配预览进入 context，后续通过 ctx_search 深入。不传 intent 则完整 stdout 进入 context。
+大输出（>5KB）时传 `intent: "describe what to find"`：输出自动索引到 FTS5，仅匹配预览进入 context，后续通过 ctx_search 深入。不传 intent 则完整 stdout 进入 context。
 
 #### 优先使用 sandbox 工具
 

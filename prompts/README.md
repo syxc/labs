@@ -40,6 +40,8 @@ python3 extract.py
 
 `build.py` 会校验配置项和占位符，任一 Agent 生成失败就返回非零。`check.py` 会核对 `agents/`、`golden/`、`out/` 的文件集合，并要求生成结果与基线逐字节一致。加上 `--deployed` 后，还会核对各 TOML 中 `output` 指向的实际文件，以及 `~/.claude/TOOLS.md`。
 
+`extract.py` 仅用于从 golden 反向重建可提取的 snippets，会覆盖对应片段；日常同步不需要运行。
+
 ## 同步规则
 
 - Claude：生成结果必须与当前 `~/.claude/CLAUDE.md` 完全一致。
@@ -60,4 +62,4 @@ python3 extract.py
 5. 部署前备份 TOML 中 `output` 指向的实际文件和 `~/.claude/TOOLS.md`，再复制生成结果与统一工具命令。
 6. 运行 `python3 check.py --deployed`，确认部署文件与生成结果一致。
 
-构建和检查不会自动部署，也不会自动 commit 或 push。直接修改 `~/.claude/TOOLS.md` 后，必须同步更新 `snippets/tools.md` 并重建 8 个内联 Agent；`python3 check.py --deployed` 会报告尚未同步的部署文件。
+构建和检查不会自动部署，也不会自动 commit 或 push。直接修改 `~/.claude/CLAUDE.md` 或 `~/.claude/TOOLS.md` 后，必须同步更新模板或 `snippets/tools.md` 并重建相关 Agent；`python3 check.py --deployed` 会报告尚未同步的部署文件。
