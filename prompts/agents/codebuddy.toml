@@ -1,5 +1,4 @@
 output = "/Users/syxc/.codebuddy/CODEBUDDY.md"
-AGENT_NAME = "CodeBuddy"
 RETENTION = "snippet:retention_std"
 CONTEXT_MGMT = "snippet:context_mgmt_codebuddy"
 WORKFLOW_PRE = "snippet:workflow_pre_claude"

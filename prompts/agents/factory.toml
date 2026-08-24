@@ -1,5 +1,4 @@
 output = "/Users/syxc/.factory/AGENTS.md"
-AGENT_NAME = "Factory"
 RETENTION = "snippet:retention_strict"
 CONTEXT_MGMT = ""
 WORKFLOW_PRE = "snippet:workflow_pre_zcode"

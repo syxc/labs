@@ -1,5 +1,4 @@
 output = "/Users/syxc/.claude/CLAUDE.md"
-AGENT_NAME = "Claude"
 RETENTION = "snippet:retention_std"
 CONTEXT_MGMT = "snippet:context_mgmt_claude"
 WORKFLOW_PRE = "snippet:workflow_pre_claude"

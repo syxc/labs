@@ -1,5 +1,4 @@
 output = "/Users/syxc/.omp/agent/AGENTS.md"
-AGENT_NAME = "OMP"
 RETENTION = "snippet:retention_mid"
 CONTEXT_MGMT = ""
 WORKFLOW_PRE = "snippet:workflow_pre_zcode"

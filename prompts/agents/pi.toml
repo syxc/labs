@@ -1,5 +1,4 @@
 output = "/Users/syxc/.pi/agent/AGENTS.md"
-AGENT_NAME = "Pi"
 RETENTION = "snippet:retention_std"
 CONTEXT_MGMT = "snippet:context_mgmt_pi"
 WORKFLOW_PRE = "snippet:workflow_pre_claude"

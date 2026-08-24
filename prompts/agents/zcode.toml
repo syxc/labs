@@ -1,5 +1,4 @@
 output = "/Users/syxc/.zcode/AGENTS.md"
-AGENT_NAME = "ZCode"
 RETENTION = "snippet:retention_mid"
 CONTEXT_MGMT = ""
 WORKFLOW_PRE = "snippet:workflow_pre_zcode"

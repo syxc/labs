@@ -1,5 +1,4 @@
 output = "/Users/syxc/.config/opencode/AGENTS.md"
-AGENT_NAME = "OpenCode"
 RETENTION = "snippet:retention_std"
 CONTEXT_MGMT = "snippet:context_mgmt_opencode"
 WORKFLOW_PRE = "snippet:workflow_pre_claude"

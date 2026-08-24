@@ -1,10 +1,3 @@
-### Git
-
-- commit message 用英文，格式 `<scope>: <summary>`（scope 必填，summary 以动词开头，无需 type tag）
-- 正文使用真实换行和缩进；禁止写入字面量 `\n`、`\t`，以免 hooks 解析失败
-- 仅在用户明确要求时 commit 或 push；push 前复查状态、目标分支和待提交内容
-- 允许 amend 本地未推送的 commit；amend 已推送的 commit 须经用户明确同意
-- 提交始终走完整 hooks 流程，使用个人 author
-- 破坏性操作（reset --hard、force push、checkout .、restore .、clean -f、branch -D）仅在用户明确要求时执行
-- 敏感文件（.env、credentials、*.pem、*.key）通过 .gitignore 排除；提交前检查暂存内容
-- 撤销已提交变更用 `git revert`；撤销未提交改动用反向补丁，不用 `checkout .`、`restore .`（会丢弃工作区内容）
+- 仅在用户要求时 commit 或 push。提交时运行完整 hooks，使用个人 author，标题用英文 `<scope>: <summary>`：scope 必填，summary 以动词开头，不加 type tag。正文用真实换行和缩进，不写字面量 `\n` 或 `\t`
+- push 前复查工作区状态、目标分支、暂存内容。敏感文件写入 `.gitignore`
+- 未推送的 commit 可直接 amend。以下须取得明确授权：amend 已推送的 commit、`reset --hard`、force push、`checkout .`、`restore .`、`clean -f`、`branch -D`。撤销已提交的改动用 `git revert`；撤销未提交的改动用反向补丁

@@ -1,5 +1,4 @@
 output = "/Users/syxc/.craft-agent/AGENTS.md"
-AGENT_NAME = "Craft Agent"
 RETENTION = "snippet:retention_mid"
 CONTEXT_MGMT = ""
 WORKFLOW_PRE = "snippet:workflow_pre_zcode"
