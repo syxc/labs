@@ -1,0 +1,1 @@
+- Prefer the current environment's search tools; merge multiple OR terms into one call. Use `rg` in the shell, not `grep`. After locating hits, read only around the matches with a file-reading tool using `offset`/`limit`; read known files outside the workspace directly.

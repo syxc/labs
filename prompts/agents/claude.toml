@@ -1,9 +1,15 @@
 output = "/Users/syxc/.claude/CLAUDE.md"
-RETENTION = "snippet:retention_std"
-CONTEXT_MGMT = "snippet:context_mgmt_claude"
-WORKFLOW_PRE = "snippet:workflow_pre_claude"
-GIT = "snippet:git_claude_src"
-CODING = "snippet:coding_claude"
-COMMANDS = "完整命令参考：@TOOLS.md"
+CONFIG_FILE = "CLAUDE.md"
+RISK_BOUNDS = "- Authorization boundaries hold under project permissions and YOLO mode. In normal permission\n  mode, do not bypass when permissions or hooks block an action."
+SIMPLIFY = "For systematic simplification, use\n  the ponytail skill."
+GIT = "snippet:git_common"
+TOOLS = """- Prefer local, free tools for public web and GitHub research. For page extraction or search
+  (jina.ai, ducksearch), GitHub repo analysis (ghr), or web-proxy/chrome-devtools debugging, read
+  `~/.claude/TOOLS.md` first. Use the matching MCP or official source for live data, private data,
+  or anything that must be authoritative.
+- Promote a recurring specialized flow into a Skill only when asked or when the task matches; keep
+  to suggestions when not authorized."""
+COMMANDS = ""
+SEARCH = "snippet:search_common"
 EXTRA_SECTIONS = ""
 RTK_TAIL = "snippet:rtk_tail"

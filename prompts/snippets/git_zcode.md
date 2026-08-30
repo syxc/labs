@@ -1,3 +1,0 @@
-- 仅在用户要求时 commit 或 push。提交时运行完整 hooks，使用个人 author，标题用英文 `<scope>: <summary>`：scope 必填，summary 以动词开头，不加 type tag。正文用真实换行和缩进，不写字面量 `\n` 或 `\t`
-- push 前复查工作区状态、目标分支、暂存内容。敏感文件写入 `.gitignore`
-- 未推送的 commit 可直接 amend。以下须取得明确授权：amend 已推送的 commit、`reset --hard`、force push、`checkout .`、`restore .`、`clean -f`、`branch -D`。撤销已提交的改动用 `git revert`；撤销未提交的改动用反向补丁

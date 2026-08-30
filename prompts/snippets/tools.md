@@ -1,39 +1,39 @@
-### 命令参考
+### Command reference
 
-使用前确认工具可用：`which <tool>` 或 `npx <tool> --version`。
+Confirm a tool is available before use: `which <tool>` or `npx <tool> --version`.
 
-#### jina.ai：网页提取和搜索
+#### jina.ai: web extraction and search
 
 ```bash
-# 网页提取
+# web extraction
 curl https://r.jina.ai/https://URL -o out.txt
 
-# 搜索（从 $JINA_API_KEY 读取密钥）
+# search (reads key from $JINA_API_KEY)
 curl -H "Authorization: Bearer $JINA_API_KEY" "https://s.jina.ai/?q=QUERY"
 ```
 
-#### ducksearch：网页搜索和内容提取
+#### ducksearch: web search and content extraction
 
 ```bash
-npx ducksearch search "query" [-n N] [-o]         # -o 打开首结果
-npx ducksearch fetch URL [-o out.txt] [--raw]     # 推荐 -o 保存
+npx ducksearch search "query" [-n N] [-o]         # -o opens the first result
+npx ducksearch fetch URL [-o out.txt] [--raw]     # recommend -o to save
 ```
 
-`--version` 输出 1.0.2 是上游硬编码，实际版本查 `npm view ducksearch version`。
+`--version` reporting 1.0.2 is upstream hard-coded; the real version is `npm view ducksearch version`.
 
-#### ghr：GitHub 仓库分析
+#### ghr: GitHub repository analysis
 
 ```bash
-ghr {analyze|structure|search|read|readme|ls} <owner/repo>    # analyze 可加 -o out.json
-ghr clean --all                                               # 清理缓存
+ghr {analyze|structure|search|read|readme|ls} <owner/repo>    # analyze may add -o out.json
+ghr clean --all                                               # clear cache
 ```
 
-#### 网络代理设置
+#### network proxy
 
 ```bash
 export https_proxy=http://127.0.0.1:7890 GH_PROXY=http://127.0.0.1:7890
 ```
 
-#### chrome-devtools：浏览器控制和调试
+#### chrome-devtools: browser control and debugging
 
-底层 CLI：导航、交互、截图、控制台、网络和堆快照。子命令与选项见 `chrome-devtools --help`。
+Underlying CLI: navigation, interaction, screenshots, console, network, and heap snapshots. See `chrome-devtools --help` for subcommands and options.

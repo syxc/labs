@@ -1,2 +1,4 @@
 out/
 __pycache__/
+_backups/
+deploy_backup_*/

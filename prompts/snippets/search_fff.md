@@ -1,0 +1,1 @@
+- Prefer FFF for search: `fffind` to find files, `ffgrep` to search content, and `fff-multi-grep` to match multiple OR terms in one pass. Use `rg` in the shell, not `grep`. After locating hits, read only around the matches with a file-reading tool using `offset`/`limit`; read known files outside the workspace directly.
