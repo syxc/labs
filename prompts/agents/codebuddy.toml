@@ -1,5 +1,4 @@
 output = "/Users/syxc/.codebuddy/CODEBUDDY.md"
-CONFIG_FILE = "CODEBUDDY.md"
 RISK_BOUNDS = "snippet:risk_bounds"
 SIMPLIFY = "snippet:simplify"
 GIT = "snippet:git_common"

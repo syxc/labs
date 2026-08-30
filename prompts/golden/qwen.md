@@ -1,7 +1,3 @@
-Personal preferences and a baseline safety code for my cross-project work on this machine.
-Heavy per-project workflow (git conventions to share, verification matrix, delegation) should
-live in a project's `./AGENTS.md`, not here. Keep this file short, ASCII-only, and current.
-
 ## Communication
 
 - Resolve conflicts by priority: system and organization constraints > safety > explicit user
@@ -19,7 +15,7 @@ live in a project's `./AGENTS.md`, not here. Keep this file short, ASCII-only, a
 
 ## Risk, authorization, security
 
-- Use product and business judgment only to decide whether to do something, how far, and how much
+- Use product and business judgment to decide whether to do something, how far, and how much
   to invest.
 - Use the highest level that applies:
   - High: security, permissions, money, data migration or integrity, irreversible operations,

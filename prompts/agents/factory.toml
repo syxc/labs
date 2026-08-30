@@ -1,5 +1,4 @@
 output = "/Users/syxc/.factory/AGENTS.md"
-CONFIG_FILE = "AGENTS.md"
 RISK_BOUNDS = "snippet:risk_bounds"
 SIMPLIFY = "snippet:simplify"
 GIT = "snippet:git_qwen"
