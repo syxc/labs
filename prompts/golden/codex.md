@@ -105,10 +105,11 @@
 - Forensics & validation: prefer non-destructive methods; after editing JSON, validate with
   `python3 -m json.tool <file>`; before an install/upgrade via a package or version manager, check
   the target directory, current version, and global install state.
-- Commit only when asked. Disable `--no-verify` and `--no-gpg-sign` on commit. Review the staged
-  diff and exclude sensitive files; if you find an unignored sensitive path, say so and update
-  `.gitignore` only within the authorized scope. Run the repo's configured hooks; do not add Co-Authored-By to commits. Title: English `<scope>: <summary>`, scope
-  required, verb-first, no type tag. Body uses real newlines, no literal `\n` or `\t`.
+- Commit only when asked. Review the staged diff and exclude sensitive files; if you find an
+  unignored sensitive path, say so and update `.gitignore` only within the authorized scope. Run the
+  repo's configured hooks; do not add Co-Authored-By to commits.
+  Title: English `<scope>: <summary>`, scope required, verb-first, no type tag. Body uses real
+  newlines, no literal `\n` or `\t`.
 - Push only when asked; confirm remote, current branch, target branch, and pending commits first.
 - Amend only the nearest unpushed commit, when asked. Amending a pushed commit, `reset --hard`,
   force push, `checkout .`, `restore .`, `clean -f`, and `branch -D` each require explicit
@@ -118,42 +119,14 @@
 
 - Prefer the current environment's search tools; merge multiple OR terms into one call. Use `rg` in the shell, not `grep`. After locating hits, read only around the matches with a file-reading tool using `offset`/`limit`; read known files outside the workspace directly.
 
-### Command reference
+- Prefer local, free tools for public web and GitHub research. For page extraction or search
+  (jina.ai, ducksearch), GitHub repo analysis (ghr), web-proxy, or browser automation (via the
+  `ego-browser` skill), read
+  `/Users/syxc/.codex/TOOLS.md` first. Use the matching MCP or official source for live data, private data,
+  or anything that must be authoritative.
+- Promote a recurring specialized flow into a Skill only when asked or when the task matches; keep
+  to suggestions when not authorized.
 
-Confirm a tool is available before use: `which <tool>` or `npx <tool> --version`.
+---
 
-#### jina.ai: web extraction and search
-
-```bash
-# web extraction
-curl https://r.jina.ai/https://URL -o out.txt
-
-# search (reads key from $JINA_API_KEY)
-curl -H "Authorization: Bearer $JINA_API_KEY" "https://s.jina.ai/?q=QUERY"
-```
-
-#### ducksearch: web search and content extraction
-
-```bash
-npx ducksearch search "query" [-n N] [-o]         # -o opens the first result
-npx ducksearch fetch URL [-o out.txt] [--raw]     # recommend -o to save
-```
-
-`--version` reporting 1.0.2 is upstream hard-coded; the real version is `npm view ducksearch version`.
-
-#### ghr: GitHub repository analysis
-
-```bash
-ghr {analyze|structure|search|read|readme|ls} <owner/repo>    # analyze may add -o out.json
-ghr clean --all                                               # clear cache
-```
-
-#### network proxy
-
-```bash
-export https_proxy=http://127.0.0.1:7890 GH_PROXY=http://127.0.0.1:7890
-```
-
-#### ego-browser: web automation and debugging
-
-Use the `ego-browser` skill for browser automation: navigation, interaction, screenshots, console, network, and page debugging.
+@/Users/syxc/.codex/RTK.md

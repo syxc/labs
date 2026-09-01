@@ -1,8 +1,8 @@
 # Agent Prompts 同步系统
 
-从一份共享模板生成 Claude 与 8 个 Agent 的全局提示词：CodeBuddy、Craft Agent、Factory、OMP、OpenCode、Pi、Qwen、ZCode。公共规则以当前 `~/.claude/CLAUDE.md` 为基准，平台差异通过配置和片段保留。
+从一份共享模板生成 Claude 与 9 个 Agent 的全局提示词：CodeBuddy、Codex、Craft Agent、Factory、OMP、OpenCode、Pi、Qwen、ZCode。公共规则以当前 `~/.claude/CLAUDE.md` 为基准，平台差异通过配置和片段保留。
 
-Codex 不在生成或部署范围内；`~/.codex/AGENTS.md` 包含 Codex 专属的模型与 Agent 编排，始终独立维护。ZCode 纳入同步，但保留自身的内联工具规则，不照搬 Claude 专属引用。
+Codex 已纳入同步：公共规则与 Claude 蓝本完全同源，仅保留平台必要差异（`output` 指向 `~/.codex/AGENTS.md`、工具节引用 Codex 专属 `TOOLS.md`、页脚 `@RTK.md` 使用绝对路径）。ZCode 同样纳入同步，但保留自身的内联工具规则，不照搬 Claude 专属引用。
 
 ## 目录
 

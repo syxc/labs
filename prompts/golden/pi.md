@@ -155,9 +155,9 @@ ghr clean --all                                               # clear cache
 export https_proxy=http://127.0.0.1:7890 GH_PROXY=http://127.0.0.1:7890
 ```
 
-#### chrome-devtools: browser control and debugging
+#### ego-browser: web automation and debugging
 
-Underlying CLI: navigation, interaction, screenshots, console, network, and heap snapshots. See `chrome-devtools --help` for subcommands and options.
+Use the `ego-browser` skill for browser automation: navigation, interaction, screenshots, console, network, and page debugging.
 
 ---
 

@@ -120,7 +120,8 @@
 - Prefer the current environment's search tools; merge multiple OR terms into one call. Use `rg` in the shell, not `grep`. After locating hits, read only around the matches with a file-reading tool using `offset`/`limit`; read known files outside the workspace directly.
 
 - Prefer local, free tools for public web and GitHub research. For page extraction or search
-  (jina.ai, ducksearch), GitHub repo analysis (ghr), or web-proxy/chrome-devtools debugging, read
+  (jina.ai, ducksearch), GitHub repo analysis (ghr), web-proxy, or browser automation (via the
+  `ego-browser` skill), read
   `~/.claude/TOOLS.md` first. Use the matching MCP or official source for live data, private data,
   or anything that must be authoritative.
 - Promote a recurring specialized flow into a Skill only when asked or when the task matches; keep

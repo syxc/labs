@@ -1,15 +1,15 @@
-output = "/Users/syxc/.claude/CLAUDE.md"
+output = "/Users/syxc/.codex/AGENTS.md"
 RISK_BOUNDS = "snippet:risk_bounds"
 SIMPLIFY = "snippet:simplify"
 GIT = "snippet:git_common"
 TOOLS = """- Prefer local, free tools for public web and GitHub research. For page extraction or search
   (jina.ai, ducksearch), GitHub repo analysis (ghr), web-proxy, or browser automation (via the
   `ego-browser` skill), read
-  `~/.claude/TOOLS.md` first. Use the matching MCP or official source for live data, private data,
+  `/Users/syxc/.codex/TOOLS.md` first. Use the matching MCP or official source for live data, private data,
   or anything that must be authoritative.
 - Promote a recurring specialized flow into a Skill only when asked or when the task matches; keep
   to suggestions when not authorized."""
 COMMANDS = ""
 SEARCH = "snippet:search_common"
 EXTRA_SECTIONS = ""
-RTK_TAIL = "snippet:rtk_tail"
+RTK_TAIL = "---\n\n@/Users/syxc/.codex/RTK.md"
