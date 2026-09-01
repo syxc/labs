@@ -105,6 +105,4 @@ Rules below apply to any file or system operation, not only version control.
 {{TOOLS}}
 {{COMMANDS}}
 
-{{EXTRA_SECTIONS}}
-
 {{RTK_TAIL}}
