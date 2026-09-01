@@ -96,7 +96,7 @@ Rules below apply to any file or system operation, not only version control.
 
 {{GIT}}
 
-## Search
+## Code & file search
 
 {{SEARCH}}
 

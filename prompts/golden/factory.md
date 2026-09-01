@@ -120,7 +120,7 @@ Rules below apply to any file or system operation, not only version control.
   force push, `checkout .`, `restore .`, `clean -f`, and `branch -D` each require explicit
   authorization. Undo committed changes with `git revert`; uncommitted one with a reverse patch.
 
-## Search
+## Code & file search
 
 - Prefer the current environment's search tools; merge multiple OR terms into one call. Use `rg` in the shell, not `grep`. After locating hits, read only around the matches with a file-reading tool using `offset`/`limit`; read known files outside the workspace directly.
 
