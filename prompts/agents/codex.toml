@@ -3,6 +3,7 @@ RISK_BOUNDS = "snippet:risk_bounds"
 SIMPLIFY = "snippet:simplify"
 OPS_SAFETY = "snippet:ops_safety"
 GIT = "snippet:git_common"
+DELEGATION = "snippet:delegation_codex"
 TOOLS = """- Prefer local, free tools for public web and GitHub research. For page extraction or search
   (jina.ai, ducksearch), GitHub repo analysis (ghr), web-proxy, or browser automation (via the
   `ego-browser` skill), read
