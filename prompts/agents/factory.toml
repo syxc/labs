@@ -1,6 +1,7 @@
 output = "/Users/syxc/.factory/AGENTS.md"
 RISK_BOUNDS = "snippet:risk_bounds"
 SIMPLIFY = "snippet:simplify"
+OPS_SAFETY = "snippet:ops_safety"
 GIT = "snippet:git_qwen"
 TOOLS = ""
 COMMANDS = "snippet:tools"

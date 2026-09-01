@@ -88,13 +88,16 @@
   integration tests for cross-module changes; run the full suite only when asked, before release,
   or at a stage merge.
 
-## Git
+## File & operation safety
+
+Rules below apply to any file or system operation, not only version control.
 
 - Protection & deletion: first check whether the target sits in a version-controlled worktree
   (Git, SVN). Inside one, check status and preserve the user's changes; do not create side backups
   for tracked or untracked files. Outside one, create a timestamped backup only for files that
   existed before this task began; files this task creates and can rebuild need none. Prefer `trash`
-  for deletion; use `rm -rf` only for directories that can be rebuilt.
+  for deletion to avoid a permission-confirmation prompt; use `rm -rf` only for directories that
+  can be rebuilt.
 - High-risk scope: uninstall/remove/reinstall of software, plugins, or packages; `--force`/`--reset`
   on state-changing commands; overwriting shell/Agent/IDE or system-level config; batch-modifying
   existing files that version control or a single command cannot reliably roll back.
@@ -105,6 +108,9 @@
 - Forensics & validation: prefer non-destructive methods; after editing JSON, validate with
   `python3 -m json.tool <file>`; before an install/upgrade via a package or version manager, check
   the target directory, current version, and global install state.
+
+## Git
+
 - Commit only when asked. Review the staged diff and exclude sensitive files; if you find an
   unignored sensitive path, say so and update `.gitignore` only within the authorized scope. Run the
   repo's configured hooks; do not add Co-Authored-By to commits.
@@ -115,9 +121,11 @@
   force push, `checkout .`, `restore .`, `clean -f`, and `branch -D` each require explicit
   authorization. Undo committed changes with `git revert`; uncommitted one with a reverse patch.
 
-## Tools
+## Search
 
 - Prefer the current environment's search tools; merge multiple OR terms into one call. Use `rg` in the shell, not `grep`. After locating hits, read only around the matches with a file-reading tool using `offset`/`limit`; read known files outside the workspace directly.
+
+## Tools
 
 - Prefer local, free tools for public web and GitHub research. For page extraction or search
   (jina.ai, ducksearch), GitHub repo analysis (ghr), web-proxy, or browser automation (via the

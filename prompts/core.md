@@ -86,13 +86,21 @@
   integration tests for cross-module changes; run the full suite only when asked, before release,
   or at a stage merge.
 
+## File & operation safety
+
+Rules below apply to any file or system operation, not only version control.
+
+{{OPS_SAFETY}}
+
 ## Git
 
 {{GIT}}
 
-## Tools
+## Search
 
 {{SEARCH}}
+
+## Tools
 
 {{TOOLS}}
 {{COMMANDS}}
